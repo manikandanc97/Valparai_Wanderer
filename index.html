@@ -62,16 +62,17 @@
       body {
         font-family: "Outfit", sans-serif;
       }
-      .hero-bg {
-        background: linear-gradient(
-            to bottom,
-            rgba(2, 6, 23, 0.4),
-            rgba(2, 6, 23, 0.7)
-          ),
-          url("https://images.unsplash.com/photo-1590050752117-23a9d7fc20c8?auto=format&fit=crop&w=1920&q=100");
+      .hero-bg-image {
+        position: absolute;
+        inset: 0;
         background-size: cover;
         background-position: center;
-        background-attachment: fixed;
+        opacity: 0;
+        transition: opacity 2s ease-in-out;
+        z-index: 0;
+      }
+      .hero-bg-image.active {
+        opacity: 1;
       }
       .glass {
         background: rgba(255, 255, 255, 0.8);
@@ -213,7 +214,7 @@
       class="group whatsapp-float"
       title="Chat with us on WhatsApp"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/><path d="M15.9 11.3 14 12.5a3.5 3.5 0 0 1-4.5-4.5l1.2-1.9a1 1 0 0 0 .1-1.2L9.4 3a.8.8 0 0 0-1.4 0l-1.8 2a2 2 0 0 0-.5 1.7c.2 2.1 1.2 4.1 2.8 5.6 1.5 1.6 3.5 2.6 5.6 2.8a2 2 0 0 0 1.7-.5l2-1.8a.8.8 0 0 0 0-1.4l-1.9-1.4a1 1 0 0 0-1.2.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .018 5.396.015 12.03c0 2.12.541 4.189 1.57 6.057L0 24l6.104-1.602a11.82 11.82 0 005.94 1.588h.005c6.637 0 12.032-5.396 12.036-12.03a11.83 11.83 0 00-3.535-8.508z"/></svg>
     </a>
 
     <!-- Navigation Bar -->
@@ -361,10 +362,17 @@
     <!-- Hero Section -->
     <section
       id="home"
-      class="relative flex items-center min-h-[90vh] overflow-hidden hero-bg"
+      class="relative flex items-center min-h-screen overflow-hidden"
     >
+      <!-- Background Slider -->
+      <div id="heroSlider" class="absolute inset-0">
+        <div class="hero-bg-image active" style="background-image: url('https://images.unsplash.com/photo-1590050752117-23a9d7fc20c8?auto=format&fit=crop&w=1920&q=80')"></div>
+        <div class="hero-bg-image" style="background-image: url('https://images.pexels.com/photos/28437020/pexels-photo-28437020.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+        <div class="hero-bg-image" style="background-image: url('https://images.pexels.com/photos/13724240/pexels-photo-13724240.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+      </div>
+      
       <div
-        class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
+        class="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/60 to-slate-950 z-[1]"
       ></div>
       <div class="z-10 relative mx-auto px-6 lg:px-8 w-full max-w-7xl">
         <div class="space-y-10 max-w-3xl reveal active">
@@ -813,28 +821,28 @@
           </div>
           <div class="shadow-lg rounded-3xl h-80 overflow-hidden image-zoom-container reveal">
             <img
-              src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=80"
+              src="https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg?auto=compress&cs=tinysrgb&w=800"
               alt="Wildlife"
               class="w-full h-full object-cover"
             />
           </div>
           <div class="shadow-lg rounded-3xl h-80 overflow-hidden image-zoom-container reveal">
             <img
-              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1000&q=100"
+              src="https://images.pexels.com/photos/1670187/pexels-photo-1670187.jpeg?auto=compress&cs=tinysrgb&w=800"
               alt="Mountains"
               class="w-full h-full object-cover"
             />
           </div>
           <div class="shadow-lg rounded-3xl h-80 overflow-hidden image-zoom-container reveal">
             <img
-              src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1000&q=100"
+              src="https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?auto=compress&cs=tinysrgb&w=800"
               alt="Trekking"
               class="w-full h-full object-cover"
             />
           </div>
           <div class="shadow-lg rounded-3xl h-80 overflow-hidden image-zoom-container reveal">
             <img
-              src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=100"
+              src="https://images.pexels.com/photos/15846488/pexels-photo-15846488.jpeg"
               alt="Nature"
               class="w-full h-full object-cover"
             />
@@ -871,7 +879,7 @@
               href="tel:917904199650"
               class="block font-bold text-primary hover:text-primary-light text-2xl transition"
             >
-              +91 94887 71231
+              +91 79041 99650
             </a>
             <p class="text-slate-500 text-sm leading-relaxed">
               Available from 8 AM to 10 PM for instant bookings and queries.

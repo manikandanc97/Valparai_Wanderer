@@ -173,3 +173,14 @@ function showSuccessMessage() {
     setTimeout(() => msg.remove(), 500);
   }, 4000);
 }
+
+// ===== HERO BACKGROUND SLIDER =====
+const sliderImages = document.querySelectorAll(".hero-bg-image");
+if (sliderImages.length > 0) {
+  let currentIdx = 0;
+  setInterval(() => {
+    sliderImages[currentIdx].classList.remove("active");
+    currentIdx = (currentIdx + 1) % sliderImages.length;
+    sliderImages[currentIdx].classList.add("active");
+  }, 5000);
+}
