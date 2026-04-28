@@ -1,15 +1,27 @@
+// Initialize Lucide Icons
+document.addEventListener("DOMContentLoaded", () => {
+  lucide.createIcons();
+});
+
 // ===== MOBILE MENU TOGGLE =====
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
+const menuIcon = document.getElementById("menuIcon");
 
 mobileMenuBtn.addEventListener("click", () => {
-  mobileMenu.classList.toggle("hidden");
+  const isHidden = mobileMenu.classList.toggle("hidden");
+  if (isHidden) {
+    menuIcon.innerHTML = '<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>';
+  } else {
+    menuIcon.innerHTML = '<line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/>';
+  }
 });
 
 // Close menu when a link is clicked
 document.querySelectorAll("#mobileMenu a").forEach((link) => {
   link.addEventListener("click", () => {
     mobileMenu.classList.add("hidden");
+    menuIcon.innerHTML = '<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>';
   });
 });
 
@@ -18,47 +30,22 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     const targetId = link.getAttribute("href");
+    if (targetId === "#") return;
+    
     const targetElement = document.querySelector(targetId);
 
     if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+      const navHeight = document.querySelector("header").offsetHeight;
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth"
       });
     }
   });
 });
 
-// ===== PACKAGE FILTERING =====
-const filterButtons = document.querySelectorAll(".filter-btn");
-const packageCards = document.querySelectorAll(".package-card");
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    // Remove active state from all buttons
-    filterButtons.forEach((btn) => {
-      btn.classList.remove("bg-primary-light", "text-slate-950");
-      btn.classList.add("bg-slate-800", "text-slate-300");
-    });
-
-    // Add active state to clicked button
-    button.classList.remove("bg-slate-800", "text-slate-300");
-    button.classList.add("bg-primary-light", "text-slate-950");
-
-    // Filter cards
-    const filterValue = button.getAttribute("data-filter");
-
-    packageCards.forEach((card) => {
-      const cardCategory = card.getAttribute("data-category");
-
-      if (filterValue === "all" || cardCategory === filterValue) {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
-      }
-    });
-  });
-});
 
 // ===== SCROLL REVEAL ANIMATION =====
 const revealElements = document.querySelectorAll(".reveal");
@@ -66,10 +53,9 @@ const revealElements = document.querySelectorAll(".reveal");
 const revealOnScroll = () => {
   revealElements.forEach((element) => {
     const elementTop = element.getBoundingClientRect().top;
-    const elementBottom = element.getBoundingClientRect().bottom;
+    const windowHeight = window.innerHeight;
 
-    // Check if element is in viewport
-    if (elementTop < window.innerHeight && elementBottom > 0) {
+    if (elementTop < windowHeight * 0.85) {
       element.classList.add("active");
     }
   });
@@ -81,20 +67,45 @@ window.addEventListener("scroll", revealOnScroll);
 // Trigger reveal on page load
 revealOnScroll();
 
+// ===== NAVBAR SCROLL EFFECT =====
+const navbar = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add("py-2", "shadow-xl", "bg-white/90");
+    navbar.classList.remove("py-4", "bg-white/80");
+  } else {
+    navbar.classList.add("py-4", "bg-white/80");
+    navbar.classList.remove("py-2", "shadow-xl", "bg-white/90");
+  }
+});
+
 // ===== BOOK PACKAGE BUTTON FUNCTIONALITY =====
 function bookPackage(packageName) {
   // Scroll to contact section
   const contactSection = document.getElementById("contact");
-  contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  const navHeight = document.querySelector("header").offsetHeight;
+  const targetPosition = contactSection.getBoundingClientRect().top + window.pageYOffset - navHeight;
+
+  window.scrollTo({
+    top: targetPosition,
+    behavior: "smooth"
+  });
 
   // Pre-fill the package select dropdown
   const packageSelect = document.getElementById("packageSelect");
-  packageSelect.value = packageName;
+  // Find option that contains the package name
+  for (let i = 0; i < packageSelect.options.length; i++) {
+    if (packageSelect.options[i].text.includes(packageName) || packageSelect.options[i].value.includes(packageName)) {
+      packageSelect.selectedIndex = i;
+      break;
+    }
+  }
 
   // Focus on the form
   setTimeout(() => {
     document.getElementById("name").focus();
-  }, 500);
+  }, 800);
 }
 
 // ===== BOOKING FORM SUBMISSION =====
@@ -103,124 +114,62 @@ const bookingForm = document.getElementById("bookingForm");
 bookingForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const submitBtn = bookingForm.querySelector('button[type="submit"]');
+  const originalBtnText = submitBtn.innerHTML;
+  
   // Get form values
   const name = document.getElementById("name").value;
   const phone = document.getElementById("phone").value;
-  const email = document.getElementById("email").value;
   const packageName = document.getElementById("packageSelect").value;
   const people = document.getElementById("people").value;
   const date = document.getElementById("date").value;
   const message = document.getElementById("message").value;
 
-  // Validate form
-  if (!name || !phone || !email || !packageName || !people) {
-    alert("Please fill in all required fields!");
-    return;
-  }
+  // Show loading state
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i> Processing...';
+  lucide.createIcons();
 
   // Create WhatsApp message
   const whatsappMessage = encodeURIComponent(
-    `Hello! I would like to book a tour package.\n\n` +
-      `Name: ${name}\n` +
-      `Phone: ${phone}\n` +
-      `Email: ${email}\n` +
-      `Package: ${packageName}\n` +
-      `Number of People: ${people}\n` +
-      `Preferred Date: ${date || "Not specified"}\n` +
-      `Special Requests: ${message || "None"}`,
+    `*New Booking Request - Valparai Wanderer*\n\n` +
+      `*Name:* ${name}\n` +
+      `*Phone:* ${phone}\n` +
+      `*Package:* ${packageName}\n` +
+      `*Guests:* ${people}\n` +
+      `*Date:* ${date || "Flexible"}\n` +
+      `*Message:* ${message || "None"}`
   );
 
   // Send to WhatsApp
-  window.open(`https://wa.me/919488771231?text=${whatsappMessage}`, "_blank");
+  window.open(`https://wa.me/917904199650?text=${whatsappMessage}`, "_blank");
 
-  // Also send email using FormSubmit (free service)
-  try {
-    // Create FormData for email submission
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("phone", phone);
-    formData.append("email", email);
-    formData.append("package", packageName);
-    formData.append("people", people);
-    formData.append("date", date);
-    formData.append("message", message);
-
-    // Send to email service
-    await fetch("https://formspree.io/f/xyzpqrst", {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "application/json",
-      },
-    });
-  } catch (error) {
-    console.log("Email service note: Configure with your actual form endpoint");
-  }
-
-  // Show success message
-  showSuccessMessage();
-
-  // Reset form
-  bookingForm.reset();
+  // Show success and reset
+  setTimeout(() => {
+    submitBtn.innerHTML = '<i data-lucide="check-circle" class="w-6 h-6"></i> Request Sent!';
+    lucide.createIcons();
+    
+    setTimeout(() => {
+      showSuccessMessage();
+      bookingForm.reset();
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+      lucide.createIcons();
+    }, 2000);
+  }, 1000);
 });
 
-// ===== SUCCESS MESSAGE =====
 function showSuccessMessage() {
-  const message = document.createElement("div");
-  message.className =
-    "fixed top-20 right-4 bg-primary-light text-slate-950 px-6 py-3 rounded-lg font-bold shadow-lg z-50";
-  message.textContent =
-    "✅ Booking request sent! Check WhatsApp for confirmation.";
-  document.body.appendChild(message);
+  const msg = document.createElement("div");
+  msg.className = "fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-8 py-4 rounded-2xl shadow-2xl z-[100] flex items-center gap-3 border border-white/10 animate-bounce";
+  msg.innerHTML = '<i data-lucide="check" class="text-primary-light"></i> Booking request shared on WhatsApp!';
+  document.body.appendChild(msg);
+  lucide.createIcons();
 
   setTimeout(() => {
-    message.remove();
+    msg.style.opacity = "0";
+    msg.style.transform = "translate(-50%, 20px)";
+    msg.style.transition = "all 0.5s ease";
+    setTimeout(() => msg.remove(), 500);
   }, 4000);
 }
-
-// ===== LAZY LOAD IMAGES (for better performance) =====
-if ("IntersectionObserver" in window) {
-  const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        if (img.dataset.src) {
-          img.src = img.dataset.src;
-          imageObserver.unobserve(img);
-        }
-      }
-    });
-  });
-
-  document.querySelectorAll("img[data-src]").forEach((img) => {
-    imageObserver.observe(img);
-  });
-}
-
-// ===== NAVBAR SCROLL EFFECT =====
-let lastScroll = 0;
-const navbar = document.querySelector("header");
-
-window.addEventListener("scroll", () => {
-  lastScroll = window.scrollY;
-
-  if (lastScroll > 100) {
-    navbar.classList.add("shadow-lg");
-  } else {
-    navbar.classList.remove("shadow-lg");
-  }
-});
-
-// ===== PREVENT FORM SUBMISSION ON ENTER IN TEXT FIELDS =====
-document
-  .querySelectorAll(
-    '#bookingForm input[type="text"], #bookingForm input[type="email"], #bookingForm input[type="tel"]',
-  )
-  .forEach((input) => {
-    input.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        bookingForm.dispatchEvent(new Event("submit"));
-      }
-    });
-  });

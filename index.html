@@ -10,69 +10,150 @@
     />
 
     <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              primary: "#166534",
-              "primary-dark": "#15803d",
-              "primary-light": "#4ade80",
+              primary: {
+                DEFAULT: "#1b3c33", // Deep Forest Green from logo
+                light: "#2d5a27",   // Lush Green from logo
+                dark: "#0e241f",    // Darker Forest
+                glow: "#f3cc4d",    // Gold from logo
+              },
+              accent: {
+                DEFAULT: "#f3cc4d", // Gold from logo
+                light: "#f9e4a1",   // Soft Gold
+              },
               slate: {
-                950: "#041d12",
+                950: "#020617",
               },
             },
-            boxShadow: {
-              soft: "0 20px 50px rgba(22, 101, 52, 0.15)",
-              glow: "0 0 30px rgba(74, 222, 128, 0.2)",
+            fontFamily: {
+              sans: ["Outfit", "Inter", "sans-serif"],
             },
+            boxShadow: {
+              premium: "0 20px 40px -15px rgba(6, 95, 70, 0.15)",
+              "premium-hover": "0 30px 60px -12px rgba(6, 95, 70, 0.25)",
+              glow: "0 0 20px rgba(16, 185, 129, 0.3)",
+            },
+            borderRadius: {
+              '2xl': '1.25rem',
+              '3xl': '1.5rem',
+            }
           },
         },
       };
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-      * {
-        font-family: "Inter", sans-serif;
+      :root {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Outfit", sans-serif;
       }
       .hero-bg {
-        background:
-          linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.92),
-            rgba(255, 255, 255, 0.92)
+        background: linear-gradient(
+            to bottom,
+            rgba(2, 6, 23, 0.4),
+            rgba(2, 6, 23, 0.7)
           ),
-          url("https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80");
+          url("https://images.unsplash.com/photo-1590050752117-23a9d7fc20c8?auto=format&fit=crop&w=1920&q=100");
         background-size: cover;
         background-position: center;
+        background-attachment: fixed;
       }
-      .fade-in {
-        animation: fadeInUp 0.8s ease-out;
+      .glass {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .glass-dark {
+        background: rgba(2, 6, 23, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
       }
-      .card-hover {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      
+      .btn-premium {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        z-index: 1;
       }
-      .card-hover:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 30px 60px rgba(22, 101, 52, 0.2);
+      .btn-premium::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+        z-index: -1;
       }
+      .btn-premium:hover::before {
+        left: 100%;
+      }
+      .btn-premium:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(6, 95, 70, 0.3);
+      }
+      .btn-premium:active {
+        transform: translateY(-1px);
+      }
+
+      .card-premium {
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .card-premium:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px -12px rgba(6, 95, 70, 0.15);
+      }
+
+      .section-title-premium {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 12px;
+      }
+      .section-title-premium::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: #10b981;
+        border-radius: 2px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
       .whatsapp-float {
         position: fixed;
         bottom: 30px;
@@ -84,274 +165,294 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 28px;
-        cursor: pointer;
-        box-shadow: 0 5px 30px rgba(37, 211, 102, 0.4);
-        z-index: 50;
+        color: white;
+        font-size: 32px;
+        box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        z-index: 100;
         transition: all 0.3s ease;
-        animation: pulse 2s infinite;
       }
       .whatsapp-float:hover {
-        background: #1fbf63;
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+      }
+
+      .image-zoom-container {
+        overflow: hidden;
+      }
+      .image-zoom-container img {
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .image-zoom-container:hover img {
         transform: scale(1.1);
       }
-      @keyframes pulse {
-        0%,
-        100% {
-          box-shadow: 0 5px 30px rgba(37, 211, 102, 0.4);
-        }
-        50% {
-          box-shadow: 0 5px 50px rgba(37, 211, 102, 0.7);
-        }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
       }
-      @media (max-width: 768px) {
-        .whatsapp-float {
-          bottom: 20px;
-          right: 20px;
-          width: 50px;
-          height: 50px;
-          font-size: 24px;
-        }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
       }
-      .section-title {
-        position: relative;
-        display: inline-block;
+      ::-webkit-scrollbar-thumb {
+        background: #10b981;
+        border-radius: 5px;
       }
-      .section-title::after {
-        content: "";
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        width: 60px;
-        height: 3px;
-        background: #4ade80;
-        border-radius: 2px;
+      ::-webkit-scrollbar-thumb:hover {
+        background: #059669;
       }
-      .reveal {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-        transition: all 0.6s ease-out;
-      }
+    </style>
     </style>
   </head>
 
   <body class="bg-white overflow-x-hidden text-slate-900">
     <!-- Floating WhatsApp Button -->
     <a
-      href="https://wa.me/919488771231?text=Hello%20Valparai%20Wanderer%20Tours%2C%20I%20would%20like%20to%20book%20a%20tour%20package."
+      href="https://wa.me/917904199650?text=Hello%20Valparai%20Wanderer%20Tours%2C%20I%20would%20like%20to%20book%20a%20tour%20package."
       target="_blank"
       rel="noopener noreferrer"
-      class="whatsapp-float"
+      class="group whatsapp-float"
       title="Chat with us on WhatsApp"
     >
-      💬
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/><path d="M15.9 11.3 14 12.5a3.5 3.5 0 0 1-4.5-4.5l1.2-1.9a1 1 0 0 0 .1-1.2L9.4 3a.8.8 0 0 0-1.4 0l-1.8 2a2 2 0 0 0-.5 1.7c.2 2.1 1.2 4.1 2.8 5.6 1.5 1.6 3.5 2.6 5.6 2.8a2 2 0 0 0 1.7-.5l2-1.8a.8.8 0 0 0 0-1.4l-1.9-1.4a1 1 0 0 0-1.2.1z"/></svg>
     </a>
 
     <!-- Navigation Bar -->
     <header
-      class="top-0 z-40 sticky bg-white/95 backdrop-blur-xl border-slate-200 border-b"
+      class="top-0 z-50 sticky border-slate-200/50 border-b transition-all duration-300 glass"
+      id="mainNavbar"
     >
       <div
         class="flex justify-between items-center mx-auto px-6 lg:px-8 py-4 max-w-7xl"
       >
         <!-- Logo -->
-        <a href="#" class="flex items-center gap-3">
-          <img
-            src="WhatsApp Image 2026-04-24 at 12.00.13 PM.jpeg"
-            alt="Valparai Wanderer Tours Logo"
-            class="shadow-lg rounded-2xl w-14 h-14 object-cover"
-            onerror="
-              this.onerror = null;
-              this.src = 'https://via.placeholder.com/56/166534/ffffff?text=VW';
-            "
-          />
+        <a href="#" class="group flex items-center gap-3">
+          <div class="relative">
+            <div class="absolute -inset-1 bg-gradient-to-r from-primary-light to-primary opacity-25 group-hover:opacity-100 rounded-xl transition duration-1000 group-hover:duration-200 blur"></div>
+            <img
+              src="WhatsApp%20Image%202026-04-24%20at%2012.00.13%20PM.jpeg"
+              alt="Valparai Wanderer Tours Logo"
+              class="relative bg-white shadow-lg border-2 border-white rounded-xl w-12 h-12 object-cover"
+            />
+          </div>
           <div>
-            <p class="font-bold text-slate-900 text-lg">Valparai Wanderer</p>
-            <p class="font-semibold text-primary-light text-xs tracking-widest">
-              TOURS
+            <p class="font-bold text-slate-900 text-lg leading-tight tracking-tight">Valparai Wanderer</p>
+            <p class="opacity-80 font-bold text-[10px] text-primary uppercase tracking-[0.3em]">
+              Authentic Tours
             </p>
           </div>
         </a>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center gap-8">
+        <nav class="hidden lg:flex items-center gap-10">
           <a
             href="#home"
-            class="font-medium text-slate-700 hover:text-primary-dark transition"
+            class="font-semibold text-slate-600 hover:text-primary text-sm transition-colors"
             >Home</a
           >
           <a
             href="#packages"
-            class="font-medium text-slate-700 hover:text-primary-dark transition"
+            class="font-semibold text-slate-600 hover:text-primary text-sm transition-colors"
             >Packages</a
           >
           <a
             href="#why-us"
-            class="font-medium text-slate-700 hover:text-primary-dark transition"
+            class="font-semibold text-slate-600 hover:text-primary text-sm transition-colors"
             >Why Us</a
           >
           <a
             href="#reviews"
-            class="font-medium text-slate-700 hover:text-primary-dark transition"
+            class="font-semibold text-slate-600 hover:text-primary text-sm transition-colors"
             >Reviews</a
           >
           <a
             href="#gallery"
-            class="font-medium text-slate-700 hover:text-primary-dark transition"
+            class="font-semibold text-slate-600 hover:text-primary text-sm transition-colors"
             >Gallery</a
           >
           <a
             href="#contact"
-            class="font-medium text-slate-700 hover:text-primary-dark transition"
+            class="font-semibold text-slate-600 hover:text-primary text-sm transition-colors"
             >Contact</a
           >
         </nav>
 
-        <!-- Desktop CTA + Mobile Menu Button -->
-        <div class="hidden lg:flex items-center gap-4">
+        <!-- Desktop CTA -->
+        <div class="hidden lg:flex items-center gap-6">
           <a
-            href="tel:919488771231"
-            class="bg-primary-light hover:bg-primary-light/90 shadow-soft px-5 py-2.5 rounded-full font-bold text-slate-950 transition"
+            href="tel:917904199650"
+            class="flex items-center gap-2 font-bold text-slate-900 hover:text-primary text-sm transition-colors"
           >
-            📞 Call Now
+            <i data-lucide="phone" class="w-4 h-4 text-primary-light"></i>
+            +91 79041 99650
           </a>
           <a
             href="#contact"
-            class="bg-primary hover:bg-primary-dark px-5 py-2.5 rounded-full font-bold text-white transition"
+            class="bg-primary hover:bg-primary-dark shadow-premium hover:shadow-premium-hover px-6 py-3 rounded-full font-bold text-white text-sm btn-premium"
           >
-            Book Now
+            Book Your Trip
           </a>
         </div>
 
         <!-- Mobile Menu Toggle -->
         <button
           id="mobileMenuBtn"
-          class="lg:hidden text-primary-light text-2xl"
+          class="lg:hidden p-2 text-slate-900 hover:text-primary transition-colors"
         >
-          ☰
+          <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
         </button>
       </div>
 
       <!-- Mobile Menu -->
       <div
         id="mobileMenu"
-        class="hidden lg:hidden bg-white/95 px-6 py-4 border-slate-200 border-t"
+        class="hidden lg:hidden bg-white/95 backdrop-blur-xl px-6 py-8 border-slate-200 border-t max-h-screen overflow-y-auto"
       >
-        <nav class="flex flex-col gap-4">
+        <nav class="flex flex-col gap-6">
           <a
             href="#home"
-            class="text-slate-700 hover:text-primary-dark transition"
+            class="font-bold text-slate-900 hover:text-primary text-xl transition"
             >Home</a
           >
           <a
             href="#packages"
-            class="text-slate-700 hover:text-primary-dark transition"
+            class="font-bold text-slate-900 hover:text-primary text-xl transition"
             >Packages</a
           >
           <a
             href="#why-us"
-            class="text-slate-700 hover:text-primary-dark transition"
+            class="font-bold text-slate-900 hover:text-primary text-xl transition"
             >Why Us</a
           >
           <a
             href="#reviews"
-            class="text-slate-700 hover:text-primary-dark transition"
+            class="font-bold text-slate-900 hover:text-primary text-xl transition"
             >Reviews</a
           >
           <a
             href="#gallery"
-            class="text-slate-700 hover:text-primary-dark transition"
+            class="font-bold text-slate-900 hover:text-primary text-xl transition"
             >Gallery</a
           >
           <a
             href="#contact"
-            class="text-slate-700 hover:text-primary-dark transition"
+            class="font-bold text-slate-900 hover:text-primary text-xl transition"
             >Contact</a
           >
-          <a
-            href="tel:919488771231"
-            class="bg-primary-light mt-2 px-4 py-2.5 rounded-full w-full font-bold text-slate-950 text-center"
-          >
-            📞 Call Now
-          </a>
+          <div class="space-y-4 pt-6 border-slate-100 border-t">
+            <a
+              href="tel:917904199650"
+              class="flex justify-center items-center gap-3 bg-slate-50 px-4 py-4 border border-slate-200 rounded-2xl w-full font-bold text-slate-900"
+            >
+              <i data-lucide="phone" class="w-5 h-5 text-primary"></i>
+              Call Us
+            </a>
+            <a
+              href="#contact"
+              class="flex justify-center items-center gap-3 bg-primary shadow-lg px-4 py-4 rounded-2xl w-full font-bold text-white"
+            >
+              <i data-lucide="calendar" class="w-5 h-5"></i>
+              Book Now
+            </a>
+          </div>
         </nav>
       </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative py-32 lg:py-48 overflow-hidden hero-bg">
+    <section
+      id="home"
+      class="relative flex items-center min-h-[90vh] overflow-hidden hero-bg"
+    >
       <div
-        class="absolute inset-0 bg-gradient-to-r from-slate-950/40 to-transparent"
+        class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"
       ></div>
-      <div class="z-10 relative mx-auto px-6 lg:px-8 max-w-7xl">
-        <div class="space-y-6 max-w-2xl fade-in">
-          <span
-            class="inline-block bg-primary-light/15 px-4 py-2 border border-primary-light/30 rounded-full font-semibold text-primary-light text-sm"
-          >
-            🌿 Explore Nature's Best Kept Secret
-          </span>
-          <h1
-            class="font-bold text-slate-900 text-4xl lg:text-6xl leading-tight"
-          >
-            Discover Valparai's Untamed Natural Beauty
+      <div class="z-10 relative mx-auto px-6 lg:px-8 w-full max-w-7xl">
+        <div class="space-y-10 max-w-3xl reveal active">
+          <div class="inline-flex items-center gap-2 px-4 py-2 border border-white/10 rounded-full font-bold text-primary-glow text-xs sm:text-sm uppercase tracking-wide glass-dark">
+            <span class="relative flex w-2 h-2">
+              <span class="inline-flex absolute bg-primary-glow opacity-75 rounded-full w-full h-full animate-ping"></span>
+              <span class="inline-flex relative bg-primary-glow rounded-full w-2 h-2"></span>
+            </span>
+            Exploring Valparai's Hidden Gems
+          </div>
+          <h1 class="font-extrabold text-white text-5xl sm:text-6xl lg:text-7xl leading-[1.1]">
+            Experience the <span class="text-primary-light">Wild Soul</span> of South India.
           </h1>
-          <p class="max-w-xl text-slate-700 text-lg">
-            Experience waterfalls, misty mountains, tea plantations, and exotic
-            wildlife with expert local guides. Authentic tours crafted for
-            adventure seekers.
+          <p class="max-w-xl text-slate-200 text-lg sm:text-xl leading-relaxed">
+            From misty tea plantations to exotic wildlife safaris. Discover Valparai with the locals who know every secret trail.
           </p>
-          <div class="flex sm:flex-row flex-col gap-4 pt-4">
+          <div class="flex sm:flex-row flex-col gap-5 pt-4">
             <a
               href="#packages"
-              class="bg-primary-light hover:bg-primary-light/90 shadow-soft px-8 py-3.5 rounded-full font-bold text-slate-950 text-center transition"
+              class="flex justify-center items-center gap-2 bg-primary shadow-premium hover:shadow-premium-hover px-10 py-5 rounded-2xl font-extrabold text-white text-lg btn-premium"
             >
-              🎫 Explore Packages
+              <i data-lucide="compass" class="w-6 h-6"></i>
+              View Packages
             </a>
             <a
-              href="https://wa.me/919488771231?text=Hello%20Valparai%20Wanderer%20Tours%2C%20I%20would%20like%20to%20book%20a%20tour%20package."
+              href="https://wa.me/917904199650"
               target="_blank"
-              rel="noopener noreferrer"
-              class="hover:bg-primary-light/10 px-8 py-3.5 border-2 border-primary-light rounded-full font-bold text-primary-light text-center transition"
+              class="flex justify-center items-center gap-2 hover:bg-white/10 px-10 py-5 border border-white/20 rounded-2xl font-extrabold text-white text-lg transition-all glass-dark"
             >
-              💬 WhatsApp Booking
+              <i data-lucide="message-square" class="w-6 h-6"></i>
+              WhatsApp Us
             </a>
           </div>
         </div>
       </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="bottom-10 left-1/2 absolute opacity-50 -translate-x-1/2 animate-bounce">
+        <i data-lucide="chevron-down" class="w-8 h-8 text-white"></i>
+      </div>
     </section>
 
     <!-- Featured Stats -->
-    <section class="bg-slate-50 py-8 border-slate-200 border-b">
-      <div
-        class="gap-4 grid grid-cols-3 md:grid-cols-6 mx-auto px-6 lg:px-8 max-w-7xl"
-      >
-        <div class="text-center">
-          <p class="font-bold text-primary-light text-2xl lg:text-3xl">500+</p>
-          <p class="text-slate-600 text-xs lg:text-sm">Happy Travelers</p>
-        </div>
-        <div class="text-center">
-          <p class="font-bold text-primary-light text-2xl lg:text-3xl">7+</p>
-          <p class="text-slate-600 text-xs lg:text-sm">Tour Packages</p>
-        </div>
-        <div class="text-center">
-          <p class="font-bold text-primary-light text-2xl lg:text-3xl">4.9★</p>
-          <p class="text-slate-600 text-xs lg:text-sm">Avg Rating</p>
-        </div>
-        <div class="text-center">
-          <p class="font-bold text-primary-light text-2xl lg:text-3xl">24/7</p>
-          <p class="text-slate-600 text-xs lg:text-sm">Support</p>
-        </div>
-        <div class="text-center">
-          <p class="font-bold text-primary-light text-2xl lg:text-3xl">100%</p>
-          <p class="text-slate-600 text-xs lg:text-sm">Local Expert</p>
-        </div>
-        <div class="text-center">
-          <p class="font-bold text-primary-light text-2xl lg:text-3xl">10Yr+</p>
-          <p class="text-slate-600 text-xs lg:text-sm">Experience</p>
+    <section class="bg-white py-16 border-slate-100 border-b">
+      <div class="mx-auto px-6 lg:px-8 max-w-7xl">
+        <div class="gap-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+          <div class="flex flex-col items-center text-center">
+            <div class="flex justify-center items-center bg-primary/5 mb-4 rounded-2xl w-14 h-14 text-primary">
+              <i data-lucide="users" class="w-7 h-7"></i>
+            </div>
+            <p class="font-bold text-slate-900 text-3xl">500+</p>
+            <p class="font-medium text-slate-500 text-sm">Happy Travelers</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="flex justify-center items-center bg-primary/5 mb-4 rounded-2xl w-14 h-14 text-primary">
+              <i data-lucide="map" class="w-7 h-7"></i>
+            </div>
+            <p class="font-bold text-slate-900 text-3xl">12+</p>
+            <p class="font-medium text-slate-500 text-sm">Destinations</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="flex justify-center items-center bg-primary/5 mb-4 rounded-2xl w-14 h-14 text-primary">
+              <i data-lucide="star" class="w-7 h-7 text-accent"></i>
+            </div>
+            <p class="font-bold text-slate-900 text-3xl">4.9</p>
+            <p class="font-medium text-slate-500 text-sm">Avg Rating</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="flex justify-center items-center bg-primary/5 mb-4 rounded-2xl w-14 h-14 text-primary">
+              <i data-lucide="shield-check" class="w-7 h-7"></i>
+            </div>
+            <p class="font-bold text-slate-900 text-3xl">100%</p>
+            <p class="font-medium text-slate-500 text-sm">Safe & Secure</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="flex justify-center items-center bg-primary/5 mb-4 rounded-2xl w-14 h-14 text-primary">
+              <i data-lucide="user-check" class="w-7 h-7"></i>
+            </div>
+            <p class="font-bold text-slate-900 text-3xl">10yr</p>
+            <p class="font-medium text-slate-500 text-sm">Experience</p>
+          </div>
+          <div class="flex flex-col items-center text-center">
+            <div class="flex justify-center items-center bg-primary/5 mb-4 rounded-2xl w-14 h-14 text-primary">
+              <i data-lucide="headphones" class="w-7 h-7"></i>
+            </div>
+            <p class="font-bold text-slate-900 text-3xl">24/7</p>
+            <p class="font-medium text-slate-500 text-sm">Support</p>
+          </div>
         </div>
       </div>
     </section>
@@ -370,33 +471,6 @@
         </p>
       </div>
 
-      <!-- Filter Buttons -->
-      <div class="flex flex-wrap justify-center gap-3 mb-12">
-        <button
-          class="bg-primary-light filter-btn px-5 py-2 rounded-full font-semibold text-slate-950"
-          data-filter="all"
-        >
-          All Packages
-        </button>
-        <button
-          class="bg-slate-100 hover:bg-primary/10 filter-btn px-5 py-2 rounded-full font-semibold text-slate-700 hover:text-primary transition"
-          data-filter="adventure"
-        >
-          🎿 Adventure
-        </button>
-        <button
-          class="bg-slate-100 hover:bg-primary/10 filter-btn px-5 py-2 rounded-full font-semibold text-slate-700 hover:text-primary transition"
-          data-filter="family"
-        >
-          👨‍👩‍👧‍👦 Family
-        </button>
-        <button
-          class="bg-slate-100 hover:bg-primary/10 filter-btn px-5 py-2 rounded-full font-semibold text-slate-700 hover:text-primary transition"
-          data-filter="romantic"
-        >
-          💑 Romantic
-        </button>
-      </div>
 
       <!-- Package Cards Grid -->
       <div
@@ -405,157 +479,145 @@
       >
         <!-- Package 1: 1 Day Sightseeing -->
         <div
-          class="bg-white border border-primary-light/20 rounded-2xl overflow-hidden package-card card-hover reveal"
+          class="bg-white border border-slate-100 rounded-3xl overflow-hidden package-card card-premium reveal"
           data-category="adventure"
         >
-          <div class="relative h-56 overflow-hidden">
+          <div class="group relative h-64 overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
               alt="Valparai Mountain Vista"
-              loading="lazy"
-              onerror="
-                this.src =
-                  'https://via.placeholder.com/600x400?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
-              "
-              class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
-            <div
-              class="top-3 right-3 absolute bg-primary-light px-3 py-1 rounded-full font-bold text-slate-950 text-sm"
-            >
-              ⭐ 4.9
+            <div class="top-4 right-4 absolute flex items-center gap-1 px-3 py-1.5 rounded-xl font-bold text-primary text-sm glass">
+              <i data-lucide="star" class="fill-accent w-4 h-4 text-accent"></i> 4.9
+            </div>
+            <div class="bottom-4 left-4 absolute">
+               <span class="bg-primary px-3 py-1 rounded-lg font-bold text-white text-xs uppercase tracking-wider">Most Popular</span>
             </div>
           </div>
-          <div class="space-y-3 p-5">
-            <h3 class="font-bold text-slate-900 text-xl">
-              Valparai 1 Day Sightseeing Package
-            </h3>
-            <p class="text-slate-600 text-sm">
-              Experience scenic viewpoints, forest trails, and local villages in
-              one perfect day.
-            </p>
-            <div class="flex gap-2 text-sm">
-              <span class="bg-slate-100 px-3 py-1 rounded-full text-primary"
-                >📅 1 Day</span
-              >
-              <span class="bg-slate-100 px-3 py-1 rounded-full text-primary"
-                >👥 2-8 People</span
-              >
-            </div>
-            <div class="pt-3 border-slate-700 border-t">
-              <p class="font-bold text-primary-light text-2xl">
-                ₹1,299 <span class="text-slate-600 text-sm">/person</span>
+          <div class="space-y-6 p-8">
+            <div>
+              <h3 class="mb-2 font-extrabold text-slate-900 text-2xl leading-tight">
+                Valparai 1 Day Safari
+              </h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Experience scenic viewpoints, lush forest trails, and misty tea estates in one perfect day.
               </p>
             </div>
-            <button
-              class="bg-primary-light hover:bg-primary-light/90 mt-4 px-4 py-2.5 rounded-lg w-full font-bold text-slate-950 transition"
-              onclick="bookPackage('Valparai 1 Day Sightseeing Package')"
-            >
-              📞 Book This Package
-            </button>
+            <div class="flex items-center gap-4 py-4 border-slate-100 border-y">
+              <div class="flex items-center gap-1.5 font-semibold text-slate-600 text-xs">
+                <i data-lucide="clock" class="w-4 h-4 text-primary"></i> 1 Day
+              </div>
+              <div class="flex items-center gap-1.5 font-semibold text-slate-600 text-xs">
+                <i data-lucide="users" class="w-4 h-4 text-primary"></i> 2-8 People
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="font-bold text-slate-400 text-xs uppercase tracking-wider">Starts From</p>
+                <p class="font-extrabold text-primary text-3xl">₹1,299</p>
+              </div>
+              <button
+                class="bg-primary hover:bg-primary-dark shadow-lg p-4 rounded-2xl text-white transition-all btn-premium"
+                onclick="bookPackage('Valparai 1 Day Sightseeing Package')"
+              >
+                <i data-lucide="arrow-right" class="w-6 h-6"></i>
+              </button>
+            </div>
           </div>
         </div>
 
         <!-- Package 2: Monkey Falls Tour -->
         <div
-          class="bg-white border border-primary-light/20 rounded-2xl overflow-hidden package-card card-hover reveal"
+          class="bg-white border border-slate-100 rounded-3xl overflow-hidden package-card card-premium reveal"
           data-category="adventure"
         >
-          <div class="relative h-56 overflow-hidden">
+          <div class="group relative h-64 overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1511576661531-b34c7eaf8a38?auto=format&fit=crop&w=600&q=80"
+              src="https://images.pexels.com/photos/34509426/pexels-photo-34509426.jpeg"
               alt="Monkey Falls Waterfall"
-              loading="lazy"
-              onerror="
-                this.src =
-                  'https://via.placeholder.com/600x400?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
-              "
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
-            <div
-              class="top-3 right-3 absolute bg-primary-light px-3 py-1 rounded-full font-bold text-slate-950 text-sm"
-            >
-              ⭐ 4.8
+            <div class="top-4 right-4 absolute flex items-center gap-1 px-3 py-1.5 rounded-xl font-bold text-primary text-sm glass">
+              <i data-lucide="star" class="fill-accent w-4 h-4 text-accent"></i> 4.8
             </div>
           </div>
-          <div class="space-y-3 p-5">
-            <h3 class="font-bold text-slate-900 text-xl">
-              Monkey Falls Trekking Tour
-            </h3>
-            <p class="text-slate-600 text-sm">
-              Trek through lush forests to witness the majestic 120ft cascading
-              waterfall and playful monkeys.
-            </p>
-            <div class="flex gap-2 text-sm">
-              <span class="bg-slate-100 px-3 py-1 rounded-full text-primary"
-                >🥾 Trek</span
-              >
-              <span class="bg-slate-100 px-3 py-1 rounded-full text-primary"
-                >👥 4-10 People</span
-              >
-            </div>
-            <div class="pt-3 border-slate-700 border-t">
-              <p class="font-bold text-primary-light text-2xl">
-                ₹1,599 <span class="text-slate-600 text-sm">/person</span>
+          <div class="space-y-6 p-8">
+            <div>
+              <h3 class="mb-2 font-extrabold text-slate-900 text-2xl leading-tight">
+                Monkey Falls Trek
+              </h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Trek through lush forests to witness the majestic 120ft cascading waterfall.
               </p>
             </div>
-            <button
-              class="bg-primary-light hover:bg-primary-light/90 mt-4 px-4 py-2.5 rounded-lg w-full font-bold text-slate-950 transition"
-              onclick="bookPackage('Monkey Falls Trekking Tour')"
-            >
-              📞 Book This Package
-            </button>
+            <div class="flex items-center gap-4 py-4 border-slate-100 border-y">
+              <div class="flex items-center gap-1.5 font-semibold text-slate-600 text-xs">
+                <i data-lucide="activity" class="w-4 h-4 text-primary"></i> 5km Trek
+              </div>
+              <div class="flex items-center gap-1.5 font-semibold text-slate-600 text-xs">
+                <i data-lucide="users" class="w-4 h-4 text-primary"></i> 4-10 People
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="font-bold text-slate-400 text-xs uppercase tracking-wider">Starts From</p>
+                <p class="font-extrabold text-primary text-3xl">₹1,599</p>
+              </div>
+              <button
+                class="bg-primary hover:bg-primary-dark shadow-lg p-4 rounded-2xl text-white transition-all btn-premium"
+                onclick="bookPackage('Monkey Falls Trekking Tour')"
+              >
+                <i data-lucide="arrow-right" class="w-6 h-6"></i>
+              </button>
+            </div>
           </div>
         </div>
 
         <!-- Package 5: Tea Estate + Safari -->
         <div
-          class="bg-white border border-primary-light/20 rounded-2xl overflow-hidden package-card card-hover reveal"
+          class="bg-white border border-slate-100 rounded-3xl overflow-hidden package-card card-premium reveal"
           data-category="adventure"
         >
-          <div class="relative h-56 overflow-hidden">
+          <div class="group relative h-64 overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1447521041536-611dfb6ed522?auto=format&fit=crop&w=600&q=80"
+              src="https://images.pexels.com/photos/20459277/pexels-photo-20459277.jpeg"
               alt="Tea Estate Safari"
-              loading="lazy"
-              onerror="
-                this.src =
-                  'https://via.placeholder.com/600x400?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
-              "
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
-            <div
-              class="top-3 right-3 absolute bg-primary-light px-3 py-1 rounded-full font-bold text-slate-950 text-sm"
-            >
-              ⭐ 4.9
+            <div class="top-4 right-4 absolute flex items-center gap-1 px-3 py-1.5 rounded-xl font-bold text-primary text-sm glass">
+              <i data-lucide="star" class="fill-accent w-4 h-4 text-accent"></i> 4.9
             </div>
           </div>
-          <div class="space-y-3 p-5">
-            <h3 class="font-bold text-slate-900 text-xl">
-              Tea Estate + Safari Tour
-            </h3>
-            <p class="text-slate-600 text-sm">
-              Jeep safari through tea plantations, wildlife spotting, and tea
-              plantation walk with expert guides.
-            </p>
-            <div class="flex gap-2 text-sm">
-              <span class="bg-slate-100 px-3 py-1 rounded-full text-primary"
-                >🚙 Safari</span
-              >
-              <span class="bg-slate-100 px-3 py-1 rounded-full text-primary"
-                >🦁 Wildlife</span
-              >
-            </div>
-            <div class="pt-3 border-slate-700 border-t">
-              <p class="font-bold text-primary-light text-2xl">
-                ₹1,799 <span class="text-slate-600 text-sm">/person</span>
+          <div class="space-y-6 p-8">
+            <div>
+              <h3 class="mb-2 font-extrabold text-slate-900 text-2xl leading-tight">
+                Estate & Safari Night
+              </h3>
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Jeep safari through tea plantations and wildlife spotting with expert guides.
               </p>
             </div>
-            <button
-              class="bg-primary-light hover:bg-primary-light/90 mt-4 px-4 py-2.5 rounded-lg w-full font-bold text-slate-950 transition"
-              onclick="bookPackage('Tea Estate + Safari Tour')"
-            >
-              📞 Book This Package
-            </button>
+            <div class="flex items-center gap-4 py-4 border-slate-100 border-y">
+              <div class="flex items-center gap-1.5 font-semibold text-slate-600 text-xs">
+                <i data-lucide="truck" class="w-4 h-4 text-primary"></i> 4x4 Safari
+              </div>
+              <div class="flex items-center gap-1.5 font-semibold text-slate-600 text-xs">
+                <i data-lucide="moon" class="w-4 h-4 text-primary"></i> Wildlife
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="font-bold text-slate-400 text-xs uppercase tracking-wider">Starts From</p>
+                <p class="font-extrabold text-primary text-3xl">₹1,799</p>
+              </div>
+              <button
+                class="bg-primary hover:bg-primary-dark shadow-lg p-4 rounded-2xl text-white transition-all btn-premium"
+                onclick="bookPackage('Tea Estate + Safari Tour')"
+              >
+                <i data-lucide="arrow-right" class="w-6 h-6"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -574,108 +636,64 @@
             Why Choose Valparai Wanderer
           </h2>
         </div>
-        <div class="gap-6 grid md:grid-cols-2 lg:grid-cols-4">
+        <div class="gap-8 grid md:grid-cols-2 lg:grid-cols-4">
           <div class="reveal">
             <div
-              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
+              class="space-y-4 bg-white p-8 border border-slate-100 rounded-3xl card-premium"
             >
-              <div class="text-3xl">🎯</div>
-              <h3 class="font-bold text-slate-900 text-lg">
+              <div class="flex justify-center items-center bg-primary/5 rounded-2xl w-14 h-14 text-primary">
+                <i data-lucide="map-pin" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-extrabold text-slate-900 text-xl leading-tight">
                 Local Expert Guides
               </h3>
-              <p class="text-slate-600 text-sm">
-                Born and raised in Valparai with 10+ years of guiding experience
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Born and raised in Valparai with 10+ years of deep territory knowledge.
               </p>
             </div>
           </div>
           <div class="reveal">
             <div
-              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
+              class="space-y-4 bg-white p-8 border border-slate-100 rounded-3xl card-premium"
             >
-              <div class="text-3xl">🚘</div>
-              <h3 class="font-bold text-slate-900 text-lg">
+              <div class="flex justify-center items-center bg-primary/5 rounded-2xl w-14 h-14 text-primary">
+                <i data-lucide="car" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-extrabold text-slate-900 text-xl leading-tight">
                 Comfortable Transport
               </h3>
-              <p class="text-slate-600 text-sm">
-                Well-maintained vehicles with professional drivers for safe
-                journeys
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Well-maintained 4x4 vehicles for safe and comfortable mountain journeys.
               </p>
             </div>
           </div>
           <div class="reveal">
             <div
-              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
+              class="space-y-4 bg-white p-8 border border-slate-100 rounded-3xl card-premium"
             >
-              <div class="text-3xl">💰</div>
-              <h3 class="font-bold text-slate-900 text-lg">
+              <div class="flex justify-center items-center bg-primary/5 rounded-2xl w-14 h-14 text-primary">
+                <i data-lucide="tag" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-extrabold text-slate-900 text-xl leading-tight">
                 Best Price Guarantee
               </h3>
-              <p class="text-slate-600 text-sm">
-                Competitive pricing with no hidden charges, transparent billing
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Competitive pricing with absolutely no hidden charges or surprise costs.
               </p>
             </div>
           </div>
           <div class="reveal">
             <div
-              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
+              class="space-y-4 bg-white p-8 border border-slate-100 rounded-3xl card-premium"
             >
-              <div class="text-3xl">⏰</div>
-              <h3 class="font-bold text-slate-900 text-lg">
-                24/7 Customer Support
+              <div class="flex justify-center items-center bg-primary/5 rounded-2xl w-14 h-14 text-primary">
+                <i data-lucide="shield-check" class="w-7 h-7"></i>
+              </div>
+              <h3 class="font-extrabold text-slate-900 text-xl leading-tight">
+                24/7 Support
               </h3>
-              <p class="text-slate-600 text-sm">
-                Always available to help with bookings, changes, and emergencies
-              </p>
-            </div>
-          </div>
-          <div class="reveal">
-            <div
-              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
-            >
-              <div class="text-3xl">🎖️</div>
-              <h3 class="font-bold text-slate-900 text-lg">
-                Licensed & Certified
-              </h3>
-              <p class="text-slate-600 text-sm">
-                Government-registered with proper insurance and safety protocols
-              </p>
-            </div>
-          </div>
-          <div class="reveal">
-            <div
-              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
-            >
-              <div class="text-3xl">📱</div>
-              <h3 class="font-bold text-slate-900 text-lg">
-                Easy WhatsApp Booking
-              </h3>
-              <p class="text-slate-600 text-sm">
-                Quick, simple, and instant confirmation via WhatsApp chat
-              </p>
-            </div>
-          </div>
-          <div class="reveal">
-            <div
-              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
-            >
-              <div class="text-3xl">🌍</div>
-              <h3 class="font-bold text-slate-900 text-lg">
-                Eco-Friendly Tours
-              </h3>
-              <p class="text-slate-600 text-sm">
-                Sustainable practices to preserve Valparai's pristine
-                environment
-              </p>
-            </div>
-          </div>
-          <div class="reveal">
-            <div
-              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
-            >
-              <div class="text-3xl">🏆</div>
-              <h3 class="font-bold text-slate-900 text-lg">Highest Ratings</h3>
-              <p class="text-slate-600 text-sm">
-                Consistently 4.9+ stars from hundreds of satisfied travelers
+              <p class="text-slate-500 text-sm leading-relaxed">
+                Always available to help with bookings, changes, and any travel emergencies.
               </p>
             </div>
           </div>
@@ -692,73 +710,70 @@
           What Travelers Say
         </h2>
       </div>
-      <div class="gap-6 grid md:grid-cols-3">
+      <div class="gap-8 grid md:grid-cols-3">
         <div
-          class="space-y-4 bg-white p-6 border border-primary-light/20 rounded-xl reveal"
+          class="space-y-6 bg-white p-10 border border-slate-100 rounded-3xl reveal card-premium"
         >
-          <div class="flex gap-1">
-            <span class="text-primary-light text-lg">★</span>
-            <span class="text-primary-light text-lg">★</span>
-            <span class="text-primary-light text-lg">★</span>
-            <span class="text-primary-light text-lg">★</span>
-            <span class="text-primary-light text-lg">★</span>
+          <div class="flex gap-1 text-accent">
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
           </div>
-          <p class="text-slate-600">
+          <p class="text-slate-600 text-lg italic leading-relaxed">
             "Absolutely fantastic experience! Our guide was knowledgeable, the
             waterfall was breathtaking, and the entire trip was perfectly
-            organized. Highly recommended!"
+            organized."
           </p>
-          <div class="flex items-center gap-3 pt-3 border-slate-700 border-t">
-            <div class="bg-primary-light rounded-full w-10 h-10"></div>
+          <div class="flex items-center gap-4 pt-6 border-slate-50 border-t">
+            <img src="https://i.pravatar.cc/150?u=rajesh" class="border-2 border-primary/10 rounded-full w-12 h-12 object-cover" alt="Rajesh">
             <div>
-              <p class="font-bold text-slate-900">Rajesh Kumar</p>
-              <p class="text-slate-600 text-xs">Monkey Falls Trek</p>
+              <p class="font-extrabold text-slate-900">Rajesh Kumar</p>
+              <p class="font-bold text-primary text-xs">Monkey Falls Trek</p>
             </div>
           </div>
         </div>
         <div
-          class="space-y-4 bg-white p-6 border border-primary-light/20 rounded-xl reveal"
+          class="space-y-6 bg-white p-10 border border-slate-100 rounded-3xl reveal card-premium"
         >
-          <div class="flex gap-1">
-            <span class="text-primary-light text-lg">★</span>
-            <span class="text-primary-light text-lg">★</span>
-            <span class="text-primary-light text-lg">★</span>
-            <span class="text-primary-light text-lg">★</span>
-            <span class="text-primary-light text-lg">★</span>
+          <div class="flex gap-1 text-accent">
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
           </div>
-          <p class="text-slate-600">
+          <p class="text-slate-600 text-lg italic leading-relaxed">
             "Our family had an incredible weekend! The Tea Estate Safari was
-            thrilling, guides were super friendly, and everything was safe and
-            well-organized."
+            thrilling, guides were super friendly, and everything was safe."
           </p>
-          <div class="flex items-center gap-3 pt-3 border-slate-700 border-t">
-            <div class="bg-primary-light/70 rounded-full w-10 h-10"></div>
+          <div class="flex items-center gap-4 pt-6 border-slate-50 border-t">
+            <img src="https://i.pravatar.cc/150?u=priya" class="border-2 border-primary/10 rounded-full w-12 h-12 object-cover" alt="Priya">
             <div>
-              <p class="font-bold text-slate-900">Priya Sharma</p>
-              <p class="text-slate-600 text-xs">Family Weekend Package</p>
+              <p class="font-extrabold text-slate-900">Priya Sharma</p>
+              <p class="font-bold text-primary text-xs">Family Package</p>
             </div>
           </div>
         </div>
         <div
-          class="space-y-4 bg-white p-6 border border-primary-light/20 rounded-xl reveal"
+          class="space-y-6 bg-white p-10 border border-slate-100 rounded-3xl reveal card-premium"
         >
-          <div class="flex gap-1">
-            <span class="text-primary-light text-lg">★</span>
-            <span class="text-primary-light text-lg">★</span>
-            <span class="text-primary-light text-lg">★</span>
-            <span class="text-primary-light text-lg">★</span>
-            <span class="text-primary-light text-lg">★</span>
+          <div class="flex gap-1 text-accent">
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
+            <i data-lucide="star" class="fill-current w-5 h-5"></i>
           </div>
-          <p class="text-slate-600">
-            "Best honeymoon trip ever! The sunset viewpoints were romantic, the
-            guides respected our privacy, and every detail was taken care of
-            beautifully."
+          <p class="text-slate-600 text-lg italic leading-relaxed">
+            "Best honeymoon trip ever! The sunset viewpoints were romantic, and every detail was taken care of beautifully."
           </p>
-          <div class="flex items-center gap-3 pt-3 border-slate-700 border-t">
-            <div class="bg-primary-light/50 rounded-full w-10 h-10"></div>
+          <div class="flex items-center gap-4 pt-6 border-slate-50 border-t">
+            <img src="https://i.pravatar.cc/150?u=ananya" class="border-2 border-primary/10 rounded-full w-12 h-12 object-cover" alt="Ananya">
             <div>
-              <p class="font-bold text-slate-900">Ananya & Arjun</p>
-              <p class="text-slate-600 text-xs">Honeymoon Package</p>
+              <p class="font-extrabold text-slate-900">Ananya & Arjun</p>
+              <p class="font-bold text-primary text-xs">Honeymoon Package</p>
             </div>
           </div>
         </div>
@@ -781,67 +796,49 @@
             Stunning moments captured during our tours
           </p>
         </div>
-        <div class="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <img
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80"
-            alt="Gallery 1"
-            loading="lazy"
-            onerror="
-              this.src =
-                'https://via.placeholder.com/800x600?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
-            "
-            class="rounded-xl w-full h-64 object-cover"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1511576661531-b34c7eaf8a38?auto=format&fit=crop&w=800&q=80"
-            alt="Gallery 2"
-            loading="lazy"
-            onerror="
-              this.src =
-                'https://via.placeholder.com/800x600?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
-            "
-            class="rounded-xl w-full h-64 object-cover"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1447521041536-611dfb6ed522?auto=format&fit=crop&w=800&q=80"
-            alt="Gallery 3"
-            loading="lazy"
-            onerror="
-              this.src =
-                'https://via.placeholder.com/800x600?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
-            "
-            class="rounded-xl w-full h-64 object-cover"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1469022563149-aa64dbd37dae?auto=format&fit=crop&w=800&q=80"
-            alt="Gallery 4"
-            loading="lazy"
-            onerror="
-              this.src =
-                'https://via.placeholder.com/800x600?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
-            "
-            class="rounded-xl w-full h-64 object-cover"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1433086720571-6d1a9c279e00?auto=format&fit=crop&w=800&q=80"
-            alt="Gallery 5"
-            loading="lazy"
-            onerror="
-              this.src =
-                'https://via.placeholder.com/800x600?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
-            "
-            class="rounded-xl w-full h-64 object-cover"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80"
-            alt="Gallery 6"
-            loading="lazy"
-            onerror="
-              this.src =
-                'https://via.placeholder.com/800x600?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
-            "
-            class="rounded-xl w-full h-64 object-cover"
-          />
+        <div class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div class="shadow-lg rounded-3xl h-80 overflow-hidden image-zoom-container reveal">
+            <img
+              src="https://images.pexels.com/photos/13724240/pexels-photo-13724240.jpeg"
+              alt="Tea Estates"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="shadow-lg rounded-3xl h-80 overflow-hidden image-zoom-container reveal">
+            <img
+              src="https://images.pexels.com/photos/28437020/pexels-photo-28437020.jpeg"
+              alt="Waterfalls"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="shadow-lg rounded-3xl h-80 overflow-hidden image-zoom-container reveal">
+            <img
+              src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=800&q=80"
+              alt="Wildlife"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="shadow-lg rounded-3xl h-80 overflow-hidden image-zoom-container reveal">
+            <img
+              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1000&q=100"
+              alt="Mountains"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="shadow-lg rounded-3xl h-80 overflow-hidden image-zoom-container reveal">
+            <img
+              src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1000&q=100"
+              alt="Trekking"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="shadow-lg rounded-3xl h-80 overflow-hidden image-zoom-container reveal">
+            <img
+              src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1000&q=100"
+              alt="Nature"
+              class="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -860,325 +857,300 @@
         </p>
       </div>
 
-      <div class="gap-10 grid md:grid-cols-2">
+      <div class="gap-12 grid lg:grid-cols-5">
         <!-- Contact Info -->
-        <div class="space-y-6">
+        <div class="space-y-8 lg:col-span-2">
           <div
-            class="space-y-3 bg-white p-6 border border-primary-light/20 rounded-xl"
+            class="space-y-4 bg-white p-8 border border-slate-100 rounded-3xl card-premium"
           >
-            <h3
-              class="flex items-center gap-2 font-bold text-slate-900 text-lg"
-            >
-              📞 Phone Number
-            </h3>
+            <div class="flex justify-center items-center bg-primary/5 rounded-2xl w-14 h-14 text-primary">
+              <i data-lucide="phone-call" class="w-7 h-7"></i>
+            </div>
+            <h3 class="font-extrabold text-slate-900 text-xl">Call Us Directly</h3>
             <a
-              href="tel:919488771231"
-              class="font-semibold text-primary-light hover:text-primary-light/80"
+              href="tel:917904199650"
+              class="block font-bold text-primary hover:text-primary-light text-2xl transition"
             >
               +91 94887 71231
             </a>
-            <p class="text-slate-600 text-sm">
-              Call us for instant bookings and inquiries
+            <p class="text-slate-500 text-sm leading-relaxed">
+              Available from 8 AM to 10 PM for instant bookings and queries.
             </p>
           </div>
 
           <div
-            class="space-y-3 bg-white p-6 border border-primary-light/20 rounded-xl"
+            class="space-y-4 bg-white p-8 border border-slate-100 rounded-3xl card-premium"
           >
-            <h3
-              class="flex items-center gap-2 font-bold text-slate-900 text-lg"
-            >
-              💬 WhatsApp
-            </h3>
+            <div class="flex justify-center items-center bg-primary/5 rounded-2xl w-14 h-14 text-primary">
+              <i data-lucide="message-circle" class="w-7 h-7"></i>
+            </div>
+            <h3 class="font-extrabold text-slate-900 text-xl">WhatsApp Chat</h3>
             <a
-              href="https://wa.me/919488771231"
+              href="https://wa.me/917904199650"
               target="_blank"
-              rel="noopener noreferrer"
-              class="font-semibold text-primary-light hover:text-primary-light/80"
+              class="flex items-center gap-2 font-bold text-primary hover:text-primary-light text-xl transition"
             >
-              Chat on WhatsApp
+              Chat with Expert <i data-lucide="external-link" class="w-5 h-5"></i>
             </a>
-            <p class="text-slate-600 text-sm">
-              Quick booking and instant confirmation
+            <p class="text-slate-500 text-sm leading-relaxed">
+              Get detailed itineraries and photos on WhatsApp instantly.
             </p>
           </div>
 
           <div
-            class="space-y-3 bg-white p-6 border border-primary-light/20 rounded-xl"
+            class="space-y-4 bg-white p-8 border border-slate-100 rounded-3xl card-premium"
           >
-            <h3
-              class="flex items-center gap-2 font-bold text-slate-900 text-lg"
-            >
-              📧 Email
-            </h3>
+            <div class="flex justify-center items-center bg-primary/5 rounded-2xl w-14 h-14 text-primary">
+              <i data-lucide="mail" class="w-7 h-7"></i>
+            </div>
+            <h3 class="font-extrabold text-slate-900 text-xl">Email Inquiry</h3>
             <a
               href="mailto:info@valparaitourpackages.com"
-              class="font-semibold text-primary-light hover:text-primary-light/80"
+              class="block font-bold text-primary hover:text-primary-light text-lg truncate transition"
             >
               info@valparaitourpackages.com
             </a>
-            <p class="text-slate-600 text-sm">We reply within 24 hours</p>
-          </div>
-
-          <div
-            class="space-y-3 bg-white p-6 border border-primary-light/20 rounded-xl"
-          >
-            <h3
-              class="flex items-center gap-2 font-bold text-slate-900 text-lg"
-            >
-              📍 Location
-            </h3>
-            <p class="text-slate-600">Valparai, Tamil Nadu</p>
-            <p class="text-slate-600 text-sm">
-              Located in the heart of Valparai's wildlife sanctuary
+            <p class="text-slate-500 text-sm leading-relaxed">
+              For corporate bookings or detailed custom packages.
             </p>
           </div>
         </div>
 
         <!-- Contact Form -->
-        <div>
+        <div class="lg:col-span-3">
           <form
             id="bookingForm"
-            class="space-y-4 bg-white p-8 border border-primary-light/20 rounded-xl"
+            class="space-y-6 bg-white shadow-xl p-10 border border-slate-100 rounded-3xl"
           >
-            <div>
-              <label class="block mb-2 font-semibold text-slate-600 text-sm"
-                >Full Name *</label
-              >
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                placeholder="Your Name"
-                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition placeholder-slate-500"
-              />
+            <div class="gap-6 grid md:grid-cols-2">
+              <div class="space-y-2">
+                <label class="block font-bold text-slate-700 text-sm"
+                  >Full Name</label
+                >
+                <div class="relative">
+                  <i data-lucide="user" class="top-1/2 left-4 absolute w-5 h-5 text-slate-400 -translate-y-1/2"></i>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    placeholder="John Doe"
+                    class="bg-slate-50 py-4 pr-4 pl-12 border border-slate-200 focus:border-primary rounded-2xl focus:outline-none w-full font-medium text-slate-900 transition-all"
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label class="block font-bold text-slate-700 text-sm"
+                  >Phone Number</label
+                >
+                <div class="relative">
+                   <i data-lucide="phone" class="top-1/2 left-4 absolute w-5 h-5 text-slate-400 -translate-y-1/2"></i>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    placeholder="+91 00000 00000"
+                    class="bg-slate-50 py-4 pr-4 pl-12 border border-slate-200 focus:border-primary rounded-2xl focus:outline-none w-full font-medium text-slate-900 transition-all"
+                  />
+                </div>
+              </div>
             </div>
 
-            <div>
-              <label class="block mb-2 font-semibold text-slate-600 text-sm"
-                >Phone Number *</label
+            <div class="space-y-2">
+              <label class="block font-bold text-slate-700 text-sm"
+                >Tour Package</label
               >
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                required
-                placeholder="Your Phone Number"
-                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition placeholder-slate-500"
-              />
+              <div class="relative">
+                <i data-lucide="compass" class="top-1/2 left-4 absolute w-5 h-5 text-slate-400 -translate-y-1/2"></i>
+                <select
+                  id="packageSelect"
+                  name="package"
+                  required
+                  class="bg-slate-50 py-4 pr-4 pl-12 border border-slate-200 focus:border-primary rounded-2xl focus:outline-none w-full font-medium text-slate-900 transition-all appearance-none"
+                >
+                  <option value="">Choose your adventure</option>
+                  <option value="Valparai 1 Day Safari">Valparai 1 Day Safari</option>
+                  <option value="Monkey Falls Trek">Monkey Falls Trek</option>
+                  <option value="Estate & Safari Night">Estate & Safari Night</option>
+                </select>
+              </div>
             </div>
 
-            <div>
-              <label class="block mb-2 font-semibold text-slate-600 text-sm"
-                >Email Address *</label
-              >
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder="Your Email"
-                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition placeholder-slate-500"
-              />
+            <div class="gap-6 grid md:grid-cols-2">
+              <div class="space-y-2">
+                <label class="block font-bold text-slate-700 text-sm"
+                  >Guests</label
+                >
+                <div class="relative">
+                  <i data-lucide="users" class="top-1/2 left-4 absolute w-5 h-5 text-slate-400 -translate-y-1/2"></i>
+                  <input
+                    type="number"
+                    id="people"
+                    name="people"
+                    min="1"
+                    required
+                    placeholder="No. of people"
+                    class="bg-slate-50 py-4 pr-4 pl-12 border border-slate-200 focus:border-primary rounded-2xl focus:outline-none w-full font-medium text-slate-900 transition-all"
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <label class="block font-bold text-slate-700 text-sm"
+                  >Preferred Date</label
+                >
+                <div class="relative">
+                  <i data-lucide="calendar" class="top-1/2 left-4 absolute w-5 h-5 text-slate-400 -translate-y-1/2"></i>
+                  <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    class="bg-slate-50 py-4 pr-4 pl-12 border border-slate-200 focus:border-primary rounded-2xl focus:outline-none w-full font-medium text-slate-900 transition-all"
+                  />
+                </div>
+              </div>
             </div>
 
-            <div>
-              <label class="block mb-2 font-semibold text-slate-600 text-sm"
-                >Select Package *</label
-              >
-              <select
-                id="packageSelect"
-                name="package"
-                required
-                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition"
-              >
-                <option value="">Choose a Package</option>
-                <option value="Valparai 1 Day Sightseeing Package">
-                  Valparai 1 Day Sightseeing Package - ₹1,299
-                </option>
-                <option value="Monkey Falls Trekking Tour">
-                  Monkey Falls Trekking Tour - ₹1,599
-                </option>
-                <option value="Tea Estate + Safari Tour">
-                  Tea Estate + Safari Tour - ₹1,799
-                </option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block mb-2 font-semibold text-slate-600 text-sm"
-                >Number of People *</label
-              >
-              <input
-                type="number"
-                id="people"
-                name="people"
-                min="1"
-                required
-                placeholder="How many people?"
-                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition placeholder-slate-500"
-              />
-            </div>
-
-            <div>
-              <label class="block mb-2 font-semibold text-slate-600 text-sm"
-                >Preferred Date (Optional)</label
-              >
-              <input
-                type="date"
-                id="date"
-                name="date"
-                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition"
-              />
-            </div>
-
-            <div>
-              <label class="block mb-2 font-semibold text-slate-600 text-sm"
-                >Additional Message</label
+            <div class="space-y-2">
+              <label class="block font-bold text-slate-700 text-sm"
+                >Special Notes</label
               >
               <textarea
                 id="message"
                 name="message"
-                placeholder="Tell us about your trip preferences..."
+                placeholder="Anything else you'd like us to know?"
                 rows="4"
-                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition resize-none placeholder-slate-500"
+                class="bg-slate-50 px-6 py-4 border border-slate-200 focus:border-primary rounded-2xl focus:outline-none w-full font-medium text-slate-900 transition-all resize-none"
               ></textarea>
             </div>
 
             <button
               type="submit"
-              class="bg-primary-light hover:bg-primary-light/90 px-6 py-3 rounded-lg w-full font-bold text-slate-950 text-center transition"
+              class="flex justify-center items-center gap-3 bg-primary hover:bg-primary-dark shadow-premium hover:shadow-premium-hover px-8 py-5 rounded-2xl w-full font-extrabold text-white text-xl transition-all btn-premium"
             >
-              🎫 Send Booking Request
+              Confirm Booking Request
+              <i data-lucide="send" class="w-6 h-6"></i>
             </button>
-            <p class="text-slate-600 text-xs text-center">
-              We'll contact you via WhatsApp within 2 hours to confirm your
-              booking
-            </p>
           </form>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-50 py-12 border-primary-light/10 border-t">
-      <div class="space-y-8 mx-auto px-6 lg:px-8 max-w-7xl">
-        <div class="gap-8 grid md:grid-cols-4">
-          <div>
-            <div class="flex items-center gap-2 mb-4">
+    <footer class="relative bg-slate-950 py-20 overflow-hidden text-white">
+      <div class="top-0 left-0 absolute bg-gradient-to-r from-transparent via-primary-light to-transparent opacity-20 w-full h-1"></div>
+      <div class="z-10 relative space-y-16 mx-auto px-6 lg:px-8 max-w-7xl">
+        <div class="gap-12 grid md:grid-cols-2 lg:grid-cols-4">
+          <div class="space-y-6">
+            <a href="#" class="group flex items-center gap-3">
               <img
-                src="WhatsApp Image 2026-04-24 at 12.00.13 PM.jpeg"
+                src="WhatsApp%20Image%202026-04-24%20at%2012.00.13%20PM.jpeg"
                 alt="Logo"
-                class="rounded-lg w-10 h-10 object-cover"
-                onerror="
-                  this.onerror = null;
-                  this.src =
-                    'https://via.placeholder.com/40/166534/ffffff?text=VW';
-                "
+                class="bg-white border-2 border-white/10 rounded-xl w-12 h-12 object-cover"
               />
               <div>
-                <p class="font-bold text-slate-900">Valparai Wanderer</p>
-                <p class="font-semibold text-primary-light text-xs">TOURS</p>
+                <p class="font-bold text-white text-lg leading-tight tracking-tight">Valparai Wanderer</p>
+                <p class="font-bold text-[10px] text-primary-light uppercase tracking-[0.3em]">
+                  Authentic Tours
+                </p>
               </div>
-            </div>
-            <p class="text-slate-600 text-sm">
-              Premium local tours exploring Valparai's natural beauty and
-              adventure.
+            </a>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Premium local tours exploring Valparai's untamed natural beauty. Experience the wild soul of South India with expert local guides.
             </p>
+            <div class="flex gap-4">
+              <a href="https://www.instagram.com/valparai_wanderer1" class="flex justify-center items-center bg-white/5 hover:bg-primary/20 border border-white/5 rounded-xl w-10 h-10 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              </a>
+              <a href="https://www.facebook.com/share/1Ct6crP7vG/" class="flex justify-center items-center bg-white/5 hover:bg-primary/20 border border-white/5 rounded-xl w-10 h-10 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="#" class="flex justify-center items-center bg-white/5 hover:bg-primary/20 border border-white/5 rounded-xl w-10 h-10 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+              </a>
+            </div>
           </div>
+
           <div>
-            <h4 class="mb-4 font-bold text-slate-900">Quick Links</h4>
-            <ul class="space-y-2 text-slate-600 text-sm">
+            <h4 class="mb-6 font-extrabold text-white text-lg tracking-tight">Quick Links</h4>
+            <ul class="space-y-4 text-slate-400 text-sm">
               <li>
-                <a href="#packages" class="hover:text-primary-light transition"
-                  >Packages</a
-                >
+                <a href="#home" class="flex items-center gap-2 hover:text-primary-light transition">
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i> Home
+                </a>
               </li>
               <li>
-                <a href="#why-us" class="hover:text-primary-light transition"
-                  >Why Us</a
-                >
+                <a href="#packages" class="flex items-center gap-2 hover:text-primary-light transition">
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i> Tour Packages
+                </a>
               </li>
               <li>
-                <a href="#reviews" class="hover:text-primary-light transition"
-                  >Reviews</a
-                >
+                <a href="#why-us" class="flex items-center gap-2 hover:text-primary-light transition">
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i> Why Choose Us
+                </a>
               </li>
               <li>
-                <a href="#contact" class="hover:text-primary-light transition"
-                  >Contact</a
-                >
+                <a href="#reviews" class="flex items-center gap-2 hover:text-primary-light transition">
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i> Traveler Reviews
+                </a>
               </li>
             </ul>
           </div>
+
           <div>
-            <h4 class="mb-4 font-bold text-slate-900">Popular Tours</h4>
-            <ul class="space-y-2 text-slate-600 text-sm">
+            <h4 class="mb-6 font-extrabold text-white text-lg tracking-tight">Support</h4>
+            <ul class="space-y-4 text-slate-400 text-sm">
               <li>
-                <a href="#" class="hover:text-primary-light transition"
-                  >Monkey Falls Trek</a
-                >
+                <a href="#contact" class="flex items-center gap-2 hover:text-primary-light transition">
+                  <i data-lucide="help-circle" class="w-4 h-4"></i> FAQs
+                </a>
               </li>
               <li>
-                <a href="#" class="hover:text-primary-light transition"
-                  >Tea Estate Safari</a
-                >
+                <a href="#contact" class="flex items-center gap-2 hover:text-primary-light transition">
+                  <i data-lucide="file-text" class="w-4 h-4"></i> Booking Policy
+                </a>
               </li>
               <li>
-                <a href="#" class="hover:text-primary-light transition"
-                  >Waterfall Tours</a
-                >
+                <a href="#contact" class="flex items-center gap-2 hover:text-primary-light transition">
+                  <i data-lucide="shield" class="w-4 h-4"></i> Privacy Policy
+                </a>
               </li>
               <li>
-                <a href="#" class="hover:text-primary-light transition"
-                  >Family Package</a
-                >
+                <a href="#contact" class="flex items-center gap-2 hover:text-primary-light transition">
+                  <i data-lucide="phone-forwarded" class="w-4 h-4"></i> Contact Support
+                </a>
               </li>
             </ul>
           </div>
+
           <div>
-            <h4 class="mb-4 font-bold text-slate-900">Connect With Us</h4>
-            <div class="space-y-3 text-sm">
-              <a
-                href="tel:919488771231"
-                class="block text-primary-light hover:text-primary-light/80"
-                >📞 +91 94887 71231</a
-              >
-              <a
-                href="https://wa.me/919488771231"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="block text-primary-light hover:text-primary-light/80"
-                >💬 WhatsApp Chat</a
-              >
-              <a
-                href="https://www.instagram.com/valparai_wanderer1?igsh=OXZkb3d1MnlwbTN5&utm_source=qr"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="block text-primary-light hover:text-primary-light/80"
-                >📸 Instagram</a
-              >
-              <a
-                href="https://www.facebook.com/share/1Ct6crP7vG/?mibextid=wwXIfr"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="block text-primary-light hover:text-primary-light/80"
-                >👍 Facebook</a
-              >
-              <a
-                href="mailto:info@valparaitourpackages.com"
-                class="block text-primary-light hover:text-primary-light/80"
-                >📧 Email Us</a
-              >
+            <h4 class="mb-6 font-extrabold text-white text-lg tracking-tight">Contact Us</h4>
+            <div class="space-y-5 text-sm">
+              <div class="flex items-start gap-4">
+                <i data-lucide="map-pin" class="mt-1 w-5 h-5 text-primary-light"></i>
+                <p class="text-slate-400">Valparai, Coimbatore District, Tamil Nadu - 642127</p>
+              </div>
+              <div class="flex items-center gap-4">
+                <i data-lucide="phone" class="w-5 h-5 text-primary-light"></i>
+                <a href="tel:917904199650" class="text-slate-400 hover:text-white">+91 79041 99650</a>
+              </div>
+              <div class="flex items-center gap-4">
+                <i data-lucide="mail" class="w-5 h-5 text-primary-light"></i>
+                <a href="mailto:info@valparaitourpackages.com" class="text-slate-400 hover:text-white">info@valparaitourpackages.com</a>
+              </div>
             </div>
           </div>
         </div>
         <div
-          class="flex md:flex-row flex-col justify-between items-center pt-8 border-slate-700 border-t text-slate-600 text-sm"
+          class="flex md:flex-row flex-col justify-between items-center pt-10 border-white/5 border-t text-slate-500 text-xs"
         >
           <p>&copy; 2024 Valparai Wanderer Tours. All rights reserved.</p>
-          <p>Crafted with 🌿 for adventure seekers</p>
+          <div class="flex gap-6 mt-4 md:mt-0">
+             <p>Designed for Adventure 🌿</p>
+             <p>Certified Local Operator</p>
+          </div>
         </div>
       </div>
     </footer>
