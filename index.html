@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valparai Wanderer Tours | Authentic Local Tour Packages</title>
+    <meta
+      name="description"
+      content="Discover authentic Valparai tour packages - Monkey Falls Trek, 1 Day Sightseeing & Tea Estate Safari. Book your adventure today!"
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#166534",
+              "primary-dark": "#15803d",
+              "primary-light": "#4ade80",
+              slate: {
+                950: "#041d12",
+              },
+            },
+            boxShadow: {
+              soft: "0 20px 50px rgba(22, 101, 52, 0.15)",
+              glow: "0 0 30px rgba(74, 222, 128, 0.2)",
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        font-family: "Inter", sans-serif;
+      }
+      .hero-bg {
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.92),
+            rgba(255, 255, 255, 0.92)
+          ),
+          url("https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80");
+        background-size: cover;
+        background-position: center;
+      }
+      .fade-in {
+        animation: fadeInUp 0.8s ease-out;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .card-hover {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 30px 60px rgba(22, 101, 52, 0.2);
+      }
+      .whatsapp-float {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        cursor: pointer;
+        box-shadow: 0 5px 30px rgba(37, 211, 102, 0.4);
+        z-index: 50;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+      .whatsapp-float:hover {
+        background: #1fbf63;
+        transform: scale(1.1);
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 5px 30px rgba(37, 211, 102, 0.4);
+        }
+        50% {
+          box-shadow: 0 5px 50px rgba(37, 211, 102, 0.7);
+        }
+      }
+      @media (max-width: 768px) {
+        .whatsapp-float {
+          bottom: 20px;
+          right: 20px;
+          width: 50px;
+          height: 50px;
+          font-size: 24px;
+        }
+      }
+      .section-title {
+        position: relative;
+        display: inline-block;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: #4ade80;
+        border-radius: 2px;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.6s ease-out;
+      }
+    </style>
+  </head>
+
+  <body class="bg-white overflow-x-hidden text-slate-900">
+    <!-- Floating WhatsApp Button -->
+    <a
+      href="https://wa.me/919488771231?text=Hello%20Valparai%20Wanderer%20Tours%2C%20I%20would%20like%20to%20book%20a%20tour%20package."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="whatsapp-float"
+      title="Chat with us on WhatsApp"
+    >
+      💬
+    </a>
+
+    <!-- Navigation Bar -->
+    <header
+      class="top-0 z-40 sticky bg-white/95 backdrop-blur-xl border-slate-200 border-b"
+    >
+      <div
+        class="flex justify-between items-center mx-auto px-6 lg:px-8 py-4 max-w-7xl"
+      >
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3">
+          <img
+            src="WhatsApp Image 2026-04-24 at 12.00.13 PM.jpeg"
+            alt="Valparai Wanderer Tours Logo"
+            class="shadow-lg rounded-2xl w-14 h-14 object-cover"
+            onerror="
+              this.onerror = null;
+              this.src = 'https://via.placeholder.com/56/166534/ffffff?text=VW';
+            "
+          />
+          <div>
+            <p class="font-bold text-slate-900 text-lg">Valparai Wanderer</p>
+            <p class="font-semibold text-primary-light text-xs tracking-widest">
+              TOURS
+            </p>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-8">
+          <a
+            href="#home"
+            class="font-medium text-slate-700 hover:text-primary-dark transition"
+            >Home</a
+          >
+          <a
+            href="#packages"
+            class="font-medium text-slate-700 hover:text-primary-dark transition"
+            >Packages</a
+          >
+          <a
+            href="#why-us"
+            class="font-medium text-slate-700 hover:text-primary-dark transition"
+            >Why Us</a
+          >
+          <a
+            href="#reviews"
+            class="font-medium text-slate-700 hover:text-primary-dark transition"
+            >Reviews</a
+          >
+          <a
+            href="#gallery"
+            class="font-medium text-slate-700 hover:text-primary-dark transition"
+            >Gallery</a
+          >
+          <a
+            href="#contact"
+            class="font-medium text-slate-700 hover:text-primary-dark transition"
+            >Contact</a
+          >
+        </nav>
+
+        <!-- Desktop CTA + Mobile Menu Button -->
+        <div class="hidden lg:flex items-center gap-4">
+          <a
+            href="tel:919488771231"
+            class="bg-primary-light hover:bg-primary-light/90 shadow-soft px-5 py-2.5 rounded-full font-bold text-slate-950 transition"
+          >
+            📞 Call Now
+          </a>
+          <a
+            href="#contact"
+            class="bg-primary hover:bg-primary-dark px-5 py-2.5 rounded-full font-bold text-white transition"
+          >
+            Book Now
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button
+          id="mobileMenuBtn"
+          class="lg:hidden text-primary-light text-2xl"
+        >
+          ☰
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobileMenu"
+        class="hidden lg:hidden bg-white/95 px-6 py-4 border-slate-200 border-t"
+      >
+        <nav class="flex flex-col gap-4">
+          <a
+            href="#home"
+            class="text-slate-700 hover:text-primary-dark transition"
+            >Home</a
+          >
+          <a
+            href="#packages"
+            class="text-slate-700 hover:text-primary-dark transition"
+            >Packages</a
+          >
+          <a
+            href="#why-us"
+            class="text-slate-700 hover:text-primary-dark transition"
+            >Why Us</a
+          >
+          <a
+            href="#reviews"
+            class="text-slate-700 hover:text-primary-dark transition"
+            >Reviews</a
+          >
+          <a
+            href="#gallery"
+            class="text-slate-700 hover:text-primary-dark transition"
+            >Gallery</a
+          >
+          <a
+            href="#contact"
+            class="text-slate-700 hover:text-primary-dark transition"
+            >Contact</a
+          >
+          <a
+            href="tel:919488771231"
+            class="bg-primary-light mt-2 px-4 py-2.5 rounded-full w-full font-bold text-slate-950 text-center"
+          >
+            📞 Call Now
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative py-32 lg:py-48 overflow-hidden hero-bg">
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-slate-950/40 to-transparent"
+      ></div>
+      <div class="z-10 relative mx-auto px-6 lg:px-8 max-w-7xl">
+        <div class="space-y-6 max-w-2xl fade-in">
+          <span
+            class="inline-block bg-primary-light/15 px-4 py-2 border border-primary-light/30 rounded-full font-semibold text-primary-light text-sm"
+          >
+            🌿 Explore Nature's Best Kept Secret
+          </span>
+          <h1
+            class="font-bold text-slate-900 text-4xl lg:text-6xl leading-tight"
+          >
+            Discover Valparai's Untamed Natural Beauty
+          </h1>
+          <p class="max-w-xl text-slate-700 text-lg">
+            Experience waterfalls, misty mountains, tea plantations, and exotic
+            wildlife with expert local guides. Authentic tours crafted for
+            adventure seekers.
+          </p>
+          <div class="flex sm:flex-row flex-col gap-4 pt-4">
+            <a
+              href="#packages"
+              class="bg-primary-light hover:bg-primary-light/90 shadow-soft px-8 py-3.5 rounded-full font-bold text-slate-950 text-center transition"
+            >
+              🎫 Explore Packages
+            </a>
+            <a
+              href="https://wa.me/919488771231?text=Hello%20Valparai%20Wanderer%20Tours%2C%20I%20would%20like%20to%20book%20a%20tour%20package."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:bg-primary-light/10 px-8 py-3.5 border-2 border-primary-light rounded-full font-bold text-primary-light text-center transition"
+            >
+              💬 WhatsApp Booking
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Stats -->
+    <section class="bg-slate-50 py-8 border-slate-200 border-b">
+      <div
+        class="gap-4 grid grid-cols-3 md:grid-cols-6 mx-auto px-6 lg:px-8 max-w-7xl"
+      >
+        <div class="text-center">
+          <p class="font-bold text-primary-light text-2xl lg:text-3xl">500+</p>
+          <p class="text-slate-600 text-xs lg:text-sm">Happy Travelers</p>
+        </div>
+        <div class="text-center">
+          <p class="font-bold text-primary-light text-2xl lg:text-3xl">7+</p>
+          <p class="text-slate-600 text-xs lg:text-sm">Tour Packages</p>
+        </div>
+        <div class="text-center">
+          <p class="font-bold text-primary-light text-2xl lg:text-3xl">4.9★</p>
+          <p class="text-slate-600 text-xs lg:text-sm">Avg Rating</p>
+        </div>
+        <div class="text-center">
+          <p class="font-bold text-primary-light text-2xl lg:text-3xl">24/7</p>
+          <p class="text-slate-600 text-xs lg:text-sm">Support</p>
+        </div>
+        <div class="text-center">
+          <p class="font-bold text-primary-light text-2xl lg:text-3xl">100%</p>
+          <p class="text-slate-600 text-xs lg:text-sm">Local Expert</p>
+        </div>
+        <div class="text-center">
+          <p class="font-bold text-primary-light text-2xl lg:text-3xl">10Yr+</p>
+          <p class="text-slate-600 text-xs lg:text-sm">Experience</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tour Packages Section -->
+    <section id="packages" class="mx-auto px-6 lg:px-8 py-20 max-w-7xl">
+      <div class="mb-16 text-center">
+        <h2
+          class="inline-block mx-auto font-bold text-slate-900 text-3xl lg:text-4xl section-title"
+        >
+          Valparai Tour Packages
+        </h2>
+        <p class="mx-auto mt-6 max-w-2xl text-slate-700 text-lg">
+          Hand-crafted itineraries showcasing Valparai's stunning landscapes,
+          wildlife, and local culture
+        </p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
+        <button
+          class="bg-primary-light filter-btn px-5 py-2 rounded-full font-semibold text-slate-950"
+          data-filter="all"
+        >
+          All Packages
+        </button>
+        <button
+          class="bg-slate-100 hover:bg-primary/10 filter-btn px-5 py-2 rounded-full font-semibold text-slate-700 hover:text-primary transition"
+          data-filter="adventure"
+        >
+          🎿 Adventure
+        </button>
+        <button
+          class="bg-slate-100 hover:bg-primary/10 filter-btn px-5 py-2 rounded-full font-semibold text-slate-700 hover:text-primary transition"
+          data-filter="family"
+        >
+          👨‍👩‍👧‍👦 Family
+        </button>
+        <button
+          class="bg-slate-100 hover:bg-primary/10 filter-btn px-5 py-2 rounded-full font-semibold text-slate-700 hover:text-primary transition"
+          data-filter="romantic"
+        >
+          💑 Romantic
+        </button>
+      </div>
+
+      <!-- Package Cards Grid -->
+      <div
+        id="packageGrid"
+        class="gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+      >
+        <!-- Package 1: 1 Day Sightseeing -->
+        <div
+          class="bg-white border border-primary-light/20 rounded-2xl overflow-hidden package-card card-hover reveal"
+          data-category="adventure"
+        >
+          <div class="relative h-56 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"
+              alt="Valparai Mountain Vista"
+              loading="lazy"
+              onerror="
+                this.src =
+                  'https://via.placeholder.com/600x400?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
+              "
+              class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
+            />
+            <div
+              class="top-3 right-3 absolute bg-primary-light px-3 py-1 rounded-full font-bold text-slate-950 text-sm"
+            >
+              ⭐ 4.9
+            </div>
+          </div>
+          <div class="space-y-3 p-5">
+            <h3 class="font-bold text-slate-900 text-xl">
+              Valparai 1 Day Sightseeing Package
+            </h3>
+            <p class="text-slate-600 text-sm">
+              Experience scenic viewpoints, forest trails, and local villages in
+              one perfect day.
+            </p>
+            <div class="flex gap-2 text-sm">
+              <span class="bg-slate-100 px-3 py-1 rounded-full text-primary"
+                >📅 1 Day</span
+              >
+              <span class="bg-slate-100 px-3 py-1 rounded-full text-primary"
+                >👥 2-8 People</span
+              >
+            </div>
+            <div class="pt-3 border-slate-700 border-t">
+              <p class="font-bold text-primary-light text-2xl">
+                ₹1,299 <span class="text-slate-600 text-sm">/person</span>
+              </p>
+            </div>
+            <button
+              class="bg-primary-light hover:bg-primary-light/90 mt-4 px-4 py-2.5 rounded-lg w-full font-bold text-slate-950 transition"
+              onclick="bookPackage('Valparai 1 Day Sightseeing Package')"
+            >
+              📞 Book This Package
+            </button>
+          </div>
+        </div>
+
+        <!-- Package 2: Monkey Falls Tour -->
+        <div
+          class="bg-white border border-primary-light/20 rounded-2xl overflow-hidden package-card card-hover reveal"
+          data-category="adventure"
+        >
+          <div class="relative h-56 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1511576661531-b34c7eaf8a38?auto=format&fit=crop&w=600&q=80"
+              alt="Monkey Falls Waterfall"
+              loading="lazy"
+              onerror="
+                this.src =
+                  'https://via.placeholder.com/600x400?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
+              "
+              class="w-full h-full object-cover"
+            />
+            <div
+              class="top-3 right-3 absolute bg-primary-light px-3 py-1 rounded-full font-bold text-slate-950 text-sm"
+            >
+              ⭐ 4.8
+            </div>
+          </div>
+          <div class="space-y-3 p-5">
+            <h3 class="font-bold text-slate-900 text-xl">
+              Monkey Falls Trekking Tour
+            </h3>
+            <p class="text-slate-600 text-sm">
+              Trek through lush forests to witness the majestic 120ft cascading
+              waterfall and playful monkeys.
+            </p>
+            <div class="flex gap-2 text-sm">
+              <span class="bg-slate-100 px-3 py-1 rounded-full text-primary"
+                >🥾 Trek</span
+              >
+              <span class="bg-slate-100 px-3 py-1 rounded-full text-primary"
+                >👥 4-10 People</span
+              >
+            </div>
+            <div class="pt-3 border-slate-700 border-t">
+              <p class="font-bold text-primary-light text-2xl">
+                ₹1,599 <span class="text-slate-600 text-sm">/person</span>
+              </p>
+            </div>
+            <button
+              class="bg-primary-light hover:bg-primary-light/90 mt-4 px-4 py-2.5 rounded-lg w-full font-bold text-slate-950 transition"
+              onclick="bookPackage('Monkey Falls Trekking Tour')"
+            >
+              📞 Book This Package
+            </button>
+          </div>
+        </div>
+
+        <!-- Package 5: Tea Estate + Safari -->
+        <div
+          class="bg-white border border-primary-light/20 rounded-2xl overflow-hidden package-card card-hover reveal"
+          data-category="adventure"
+        >
+          <div class="relative h-56 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1447521041536-611dfb6ed522?auto=format&fit=crop&w=600&q=80"
+              alt="Tea Estate Safari"
+              loading="lazy"
+              onerror="
+                this.src =
+                  'https://via.placeholder.com/600x400?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
+              "
+              class="w-full h-full object-cover"
+            />
+            <div
+              class="top-3 right-3 absolute bg-primary-light px-3 py-1 rounded-full font-bold text-slate-950 text-sm"
+            >
+              ⭐ 4.9
+            </div>
+          </div>
+          <div class="space-y-3 p-5">
+            <h3 class="font-bold text-slate-900 text-xl">
+              Tea Estate + Safari Tour
+            </h3>
+            <p class="text-slate-600 text-sm">
+              Jeep safari through tea plantations, wildlife spotting, and tea
+              plantation walk with expert guides.
+            </p>
+            <div class="flex gap-2 text-sm">
+              <span class="bg-slate-100 px-3 py-1 rounded-full text-primary"
+                >🚙 Safari</span
+              >
+              <span class="bg-slate-100 px-3 py-1 rounded-full text-primary"
+                >🦁 Wildlife</span
+              >
+            </div>
+            <div class="pt-3 border-slate-700 border-t">
+              <p class="font-bold text-primary-light text-2xl">
+                ₹1,799 <span class="text-slate-600 text-sm">/person</span>
+              </p>
+            </div>
+            <button
+              class="bg-primary-light hover:bg-primary-light/90 mt-4 px-4 py-2.5 rounded-lg w-full font-bold text-slate-950 transition"
+              onclick="bookPackage('Tea Estate + Safari Tour')"
+            >
+              📞 Book This Package
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section
+      id="why-us"
+      class="bg-slate-50 py-20 border-primary-light/10 border-y"
+    >
+      <div class="mx-auto px-6 lg:px-8 max-w-7xl">
+        <div class="mb-16 text-center">
+          <h2
+            class="inline-block mx-auto font-bold text-slate-900 text-3xl lg:text-4xl section-title"
+          >
+            Why Choose Valparai Wanderer
+          </h2>
+        </div>
+        <div class="gap-6 grid md:grid-cols-2 lg:grid-cols-4">
+          <div class="reveal">
+            <div
+              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
+            >
+              <div class="text-3xl">🎯</div>
+              <h3 class="font-bold text-slate-900 text-lg">
+                Local Expert Guides
+              </h3>
+              <p class="text-slate-600 text-sm">
+                Born and raised in Valparai with 10+ years of guiding experience
+              </p>
+            </div>
+          </div>
+          <div class="reveal">
+            <div
+              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
+            >
+              <div class="text-3xl">🚘</div>
+              <h3 class="font-bold text-slate-900 text-lg">
+                Comfortable Transport
+              </h3>
+              <p class="text-slate-600 text-sm">
+                Well-maintained vehicles with professional drivers for safe
+                journeys
+              </p>
+            </div>
+          </div>
+          <div class="reveal">
+            <div
+              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
+            >
+              <div class="text-3xl">💰</div>
+              <h3 class="font-bold text-slate-900 text-lg">
+                Best Price Guarantee
+              </h3>
+              <p class="text-slate-600 text-sm">
+                Competitive pricing with no hidden charges, transparent billing
+              </p>
+            </div>
+          </div>
+          <div class="reveal">
+            <div
+              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
+            >
+              <div class="text-3xl">⏰</div>
+              <h3 class="font-bold text-slate-900 text-lg">
+                24/7 Customer Support
+              </h3>
+              <p class="text-slate-600 text-sm">
+                Always available to help with bookings, changes, and emergencies
+              </p>
+            </div>
+          </div>
+          <div class="reveal">
+            <div
+              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
+            >
+              <div class="text-3xl">🎖️</div>
+              <h3 class="font-bold text-slate-900 text-lg">
+                Licensed & Certified
+              </h3>
+              <p class="text-slate-600 text-sm">
+                Government-registered with proper insurance and safety protocols
+              </p>
+            </div>
+          </div>
+          <div class="reveal">
+            <div
+              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
+            >
+              <div class="text-3xl">📱</div>
+              <h3 class="font-bold text-slate-900 text-lg">
+                Easy WhatsApp Booking
+              </h3>
+              <p class="text-slate-600 text-sm">
+                Quick, simple, and instant confirmation via WhatsApp chat
+              </p>
+            </div>
+          </div>
+          <div class="reveal">
+            <div
+              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
+            >
+              <div class="text-3xl">🌍</div>
+              <h3 class="font-bold text-slate-900 text-lg">
+                Eco-Friendly Tours
+              </h3>
+              <p class="text-slate-600 text-sm">
+                Sustainable practices to preserve Valparai's pristine
+                environment
+              </p>
+            </div>
+          </div>
+          <div class="reveal">
+            <div
+              class="space-y-3 bg-white/95 p-6 border border-primary-light/20 hover:border-primary-light/50 rounded-xl transition"
+            >
+              <div class="text-3xl">🏆</div>
+              <h3 class="font-bold text-slate-900 text-lg">Highest Ratings</h3>
+              <p class="text-slate-600 text-sm">
+                Consistently 4.9+ stars from hundreds of satisfied travelers
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section id="reviews" class="mx-auto px-6 lg:px-8 py-20 max-w-7xl">
+      <div class="mb-16 text-center">
+        <h2
+          class="inline-block mx-auto font-bold text-slate-900 text-3xl lg:text-4xl section-title"
+        >
+          What Travelers Say
+        </h2>
+      </div>
+      <div class="gap-6 grid md:grid-cols-3">
+        <div
+          class="space-y-4 bg-white p-6 border border-primary-light/20 rounded-xl reveal"
+        >
+          <div class="flex gap-1">
+            <span class="text-primary-light text-lg">★</span>
+            <span class="text-primary-light text-lg">★</span>
+            <span class="text-primary-light text-lg">★</span>
+            <span class="text-primary-light text-lg">★</span>
+            <span class="text-primary-light text-lg">★</span>
+          </div>
+          <p class="text-slate-600">
+            "Absolutely fantastic experience! Our guide was knowledgeable, the
+            waterfall was breathtaking, and the entire trip was perfectly
+            organized. Highly recommended!"
+          </p>
+          <div class="flex items-center gap-3 pt-3 border-slate-700 border-t">
+            <div class="bg-primary-light rounded-full w-10 h-10"></div>
+            <div>
+              <p class="font-bold text-slate-900">Rajesh Kumar</p>
+              <p class="text-slate-600 text-xs">Monkey Falls Trek</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="space-y-4 bg-white p-6 border border-primary-light/20 rounded-xl reveal"
+        >
+          <div class="flex gap-1">
+            <span class="text-primary-light text-lg">★</span>
+            <span class="text-primary-light text-lg">★</span>
+            <span class="text-primary-light text-lg">★</span>
+            <span class="text-primary-light text-lg">★</span>
+            <span class="text-primary-light text-lg">★</span>
+          </div>
+          <p class="text-slate-600">
+            "Our family had an incredible weekend! The Tea Estate Safari was
+            thrilling, guides were super friendly, and everything was safe and
+            well-organized."
+          </p>
+          <div class="flex items-center gap-3 pt-3 border-slate-700 border-t">
+            <div class="bg-primary-light/70 rounded-full w-10 h-10"></div>
+            <div>
+              <p class="font-bold text-slate-900">Priya Sharma</p>
+              <p class="text-slate-600 text-xs">Family Weekend Package</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="space-y-4 bg-white p-6 border border-primary-light/20 rounded-xl reveal"
+        >
+          <div class="flex gap-1">
+            <span class="text-primary-light text-lg">★</span>
+            <span class="text-primary-light text-lg">★</span>
+            <span class="text-primary-light text-lg">★</span>
+            <span class="text-primary-light text-lg">★</span>
+            <span class="text-primary-light text-lg">★</span>
+          </div>
+          <p class="text-slate-600">
+            "Best honeymoon trip ever! The sunset viewpoints were romantic, the
+            guides respected our privacy, and every detail was taken care of
+            beautifully."
+          </p>
+          <div class="flex items-center gap-3 pt-3 border-slate-700 border-t">
+            <div class="bg-primary-light/50 rounded-full w-10 h-10"></div>
+            <div>
+              <p class="font-bold text-slate-900">Ananya & Arjun</p>
+              <p class="text-slate-600 text-xs">Honeymoon Package</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section
+      id="gallery"
+      class="bg-slate-50 py-20 border-primary-light/10 border-y"
+    >
+      <div class="mx-auto px-6 lg:px-8 max-w-7xl">
+        <div class="mb-16 text-center">
+          <h2
+            class="inline-block mx-auto font-bold text-slate-900 text-3xl lg:text-4xl section-title"
+          >
+            Photo Gallery
+          </h2>
+          <p class="mt-6 text-slate-600">
+            Stunning moments captured during our tours
+          </p>
+        </div>
+        <div class="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <img
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80"
+            alt="Gallery 1"
+            loading="lazy"
+            onerror="
+              this.src =
+                'https://via.placeholder.com/800x600?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
+            "
+            class="rounded-xl w-full h-64 object-cover"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1511576661531-b34c7eaf8a38?auto=format&fit=crop&w=800&q=80"
+            alt="Gallery 2"
+            loading="lazy"
+            onerror="
+              this.src =
+                'https://via.placeholder.com/800x600?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
+            "
+            class="rounded-xl w-full h-64 object-cover"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1447521041536-611dfb6ed522?auto=format&fit=crop&w=800&q=80"
+            alt="Gallery 3"
+            loading="lazy"
+            onerror="
+              this.src =
+                'https://via.placeholder.com/800x600?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
+            "
+            class="rounded-xl w-full h-64 object-cover"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1469022563149-aa64dbd37dae?auto=format&fit=crop&w=800&q=80"
+            alt="Gallery 4"
+            loading="lazy"
+            onerror="
+              this.src =
+                'https://via.placeholder.com/800x600?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
+            "
+            class="rounded-xl w-full h-64 object-cover"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1433086720571-6d1a9c279e00?auto=format&fit=crop&w=800&q=80"
+            alt="Gallery 5"
+            loading="lazy"
+            onerror="
+              this.src =
+                'https://via.placeholder.com/800x600?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
+            "
+            class="rounded-xl w-full h-64 object-cover"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80"
+            alt="Gallery 6"
+            loading="lazy"
+            onerror="
+              this.src =
+                'https://via.placeholder.com/800x600?text=Image+Unavailable&bg=edf2f7&fg=1f2937'
+            "
+            class="rounded-xl w-full h-64 object-cover"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Inquiry Form Section -->
+    <section id="contact" class="mx-auto px-6 lg:px-8 py-20 max-w-7xl">
+      <div class="mb-16 text-center">
+        <h2
+          class="inline-block mx-auto font-bold text-slate-900 text-3xl lg:text-4xl section-title"
+        >
+          Book Your Adventure
+        </h2>
+        <p class="mx-auto mt-6 max-w-2xl text-slate-600">
+          Fill in your details and choose a package. We'll confirm your booking
+          via WhatsApp within 2 hours.
+        </p>
+      </div>
+
+      <div class="gap-10 grid md:grid-cols-2">
+        <!-- Contact Info -->
+        <div class="space-y-6">
+          <div
+            class="space-y-3 bg-white p-6 border border-primary-light/20 rounded-xl"
+          >
+            <h3
+              class="flex items-center gap-2 font-bold text-slate-900 text-lg"
+            >
+              📞 Phone Number
+            </h3>
+            <a
+              href="tel:919488771231"
+              class="font-semibold text-primary-light hover:text-primary-light/80"
+            >
+              +91 94887 71231
+            </a>
+            <p class="text-slate-600 text-sm">
+              Call us for instant bookings and inquiries
+            </p>
+          </div>
+
+          <div
+            class="space-y-3 bg-white p-6 border border-primary-light/20 rounded-xl"
+          >
+            <h3
+              class="flex items-center gap-2 font-bold text-slate-900 text-lg"
+            >
+              💬 WhatsApp
+            </h3>
+            <a
+              href="https://wa.me/919488771231"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold text-primary-light hover:text-primary-light/80"
+            >
+              Chat on WhatsApp
+            </a>
+            <p class="text-slate-600 text-sm">
+              Quick booking and instant confirmation
+            </p>
+          </div>
+
+          <div
+            class="space-y-3 bg-white p-6 border border-primary-light/20 rounded-xl"
+          >
+            <h3
+              class="flex items-center gap-2 font-bold text-slate-900 text-lg"
+            >
+              📧 Email
+            </h3>
+            <a
+              href="mailto:info@valparaitourpackages.com"
+              class="font-semibold text-primary-light hover:text-primary-light/80"
+            >
+              info@valparaitourpackages.com
+            </a>
+            <p class="text-slate-600 text-sm">We reply within 24 hours</p>
+          </div>
+
+          <div
+            class="space-y-3 bg-white p-6 border border-primary-light/20 rounded-xl"
+          >
+            <h3
+              class="flex items-center gap-2 font-bold text-slate-900 text-lg"
+            >
+              📍 Location
+            </h3>
+            <p class="text-slate-600">Valparai, Tamil Nadu</p>
+            <p class="text-slate-600 text-sm">
+              Located in the heart of Valparai's wildlife sanctuary
+            </p>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div>
+          <form
+            id="bookingForm"
+            class="space-y-4 bg-white p-8 border border-primary-light/20 rounded-xl"
+          >
+            <div>
+              <label class="block mb-2 font-semibold text-slate-600 text-sm"
+                >Full Name *</label
+              >
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Your Name"
+                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition placeholder-slate-500"
+              />
+            </div>
+
+            <div>
+              <label class="block mb-2 font-semibold text-slate-600 text-sm"
+                >Phone Number *</label
+              >
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                placeholder="Your Phone Number"
+                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition placeholder-slate-500"
+              />
+            </div>
+
+            <div>
+              <label class="block mb-2 font-semibold text-slate-600 text-sm"
+                >Email Address *</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="Your Email"
+                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition placeholder-slate-500"
+              />
+            </div>
+
+            <div>
+              <label class="block mb-2 font-semibold text-slate-600 text-sm"
+                >Select Package *</label
+              >
+              <select
+                id="packageSelect"
+                name="package"
+                required
+                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition"
+              >
+                <option value="">Choose a Package</option>
+                <option value="Valparai 1 Day Sightseeing Package">
+                  Valparai 1 Day Sightseeing Package - ₹1,299
+                </option>
+                <option value="Monkey Falls Trekking Tour">
+                  Monkey Falls Trekking Tour - ₹1,599
+                </option>
+                <option value="Tea Estate + Safari Tour">
+                  Tea Estate + Safari Tour - ₹1,799
+                </option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block mb-2 font-semibold text-slate-600 text-sm"
+                >Number of People *</label
+              >
+              <input
+                type="number"
+                id="people"
+                name="people"
+                min="1"
+                required
+                placeholder="How many people?"
+                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition placeholder-slate-500"
+              />
+            </div>
+
+            <div>
+              <label class="block mb-2 font-semibold text-slate-600 text-sm"
+                >Preferred Date (Optional)</label
+              >
+              <input
+                type="date"
+                id="date"
+                name="date"
+                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition"
+              />
+            </div>
+
+            <div>
+              <label class="block mb-2 font-semibold text-slate-600 text-sm"
+                >Additional Message</label
+              >
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Tell us about your trip preferences..."
+                rows="4"
+                class="bg-slate-50 px-4 py-2.5 border border-slate-300 focus:border-primary-light rounded-lg focus:outline-none w-full text-slate-900 transition resize-none placeholder-slate-500"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="bg-primary-light hover:bg-primary-light/90 px-6 py-3 rounded-lg w-full font-bold text-slate-950 text-center transition"
+            >
+              🎫 Send Booking Request
+            </button>
+            <p class="text-slate-600 text-xs text-center">
+              We'll contact you via WhatsApp within 2 hours to confirm your
+              booking
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 py-12 border-primary-light/10 border-t">
+      <div class="space-y-8 mx-auto px-6 lg:px-8 max-w-7xl">
+        <div class="gap-8 grid md:grid-cols-4">
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <img
+                src="WhatsApp Image 2026-04-24 at 12.00.13 PM.jpeg"
+                alt="Logo"
+                class="rounded-lg w-10 h-10 object-cover"
+                onerror="
+                  this.onerror = null;
+                  this.src =
+                    'https://via.placeholder.com/40/166534/ffffff?text=VW';
+                "
+              />
+              <div>
+                <p class="font-bold text-slate-900">Valparai Wanderer</p>
+                <p class="font-semibold text-primary-light text-xs">TOURS</p>
+              </div>
+            </div>
+            <p class="text-slate-600 text-sm">
+              Premium local tours exploring Valparai's natural beauty and
+              adventure.
+            </p>
+          </div>
+          <div>
+            <h4 class="mb-4 font-bold text-slate-900">Quick Links</h4>
+            <ul class="space-y-2 text-slate-600 text-sm">
+              <li>
+                <a href="#packages" class="hover:text-primary-light transition"
+                  >Packages</a
+                >
+              </li>
+              <li>
+                <a href="#why-us" class="hover:text-primary-light transition"
+                  >Why Us</a
+                >
+              </li>
+              <li>
+                <a href="#reviews" class="hover:text-primary-light transition"
+                  >Reviews</a
+                >
+              </li>
+              <li>
+                <a href="#contact" class="hover:text-primary-light transition"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="mb-4 font-bold text-slate-900">Popular Tours</h4>
+            <ul class="space-y-2 text-slate-600 text-sm">
+              <li>
+                <a href="#" class="hover:text-primary-light transition"
+                  >Monkey Falls Trek</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary-light transition"
+                  >Tea Estate Safari</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary-light transition"
+                  >Waterfall Tours</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary-light transition"
+                  >Family Package</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="mb-4 font-bold text-slate-900">Connect With Us</h4>
+            <div class="space-y-3 text-sm">
+              <a
+                href="tel:919488771231"
+                class="block text-primary-light hover:text-primary-light/80"
+                >📞 +91 94887 71231</a
+              >
+              <a
+                href="https://wa.me/919488771231"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block text-primary-light hover:text-primary-light/80"
+                >💬 WhatsApp Chat</a
+              >
+              <a
+                href="https://www.instagram.com/valparai_wanderer1?igsh=OXZkb3d1MnlwbTN5&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block text-primary-light hover:text-primary-light/80"
+                >📸 Instagram</a
+              >
+              <a
+                href="https://www.facebook.com/share/1Ct6crP7vG/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block text-primary-light hover:text-primary-light/80"
+                >👍 Facebook</a
+              >
+              <a
+                href="mailto:info@valparaitourpackages.com"
+                class="block text-primary-light hover:text-primary-light/80"
+                >📧 Email Us</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex md:flex-row flex-col justify-between items-center pt-8 border-slate-700 border-t text-slate-600 text-sm"
+        >
+          <p>&copy; 2024 Valparai Wanderer Tours. All rights reserved.</p>
+          <p>Crafted with 🌿 for adventure seekers</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
