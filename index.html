@@ -395,7 +395,7 @@
     <!-- Hero Section -->
     <section
       id="home"
-      class="relative flex items-center min-h-screen overflow-hidden bg-slate-900"
+      class="relative flex items-center bg-slate-900 min-h-screen overflow-hidden"
       style="
         background-image: url(&quot;https://images.unsplash.com/photo-1590050752117-23a9d7fc20c8?auto=format&fit=crop&w=1920&q=80&quot;);
         background-size: cover;
@@ -403,13 +403,7 @@
       "
     >
       <!-- Background Slider -->
-      <div id="heroSlider" class="absolute inset-0 z-0">
-        <div
-          class="hero-bg-image active"
-          style="
-            background-image: url(&quot;https://images.pexels.com/photos/18029412/pexels-photo-18029412.jpeg&quot;);
-          "
-        ></div>
+      <div id="heroSlider" class="z-0 absolute inset-0">
         <div
           class="hero-bg-image"
           style="
@@ -420,6 +414,12 @@
           class="hero-bg-image"
           style="
             background-image: url(&quot;https://images.pexels.com/photos/13724240/pexels-photo-13724240.jpeg?auto=compress&cs=tinysrgb&w=1920&quot;);
+          "
+        ></div>
+        <div
+          class="hero-bg-image active"
+          style="
+            background-image: url(&quot;https://images.pexels.com/photos/18029412/pexels-photo-18029412.jpeg&quot;);
           "
         ></div>
       </div>
