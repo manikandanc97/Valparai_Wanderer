@@ -216,8 +216,8 @@ function openItinerary(packageId) {
         <div class="absolute left-0 top-1.5 w-6 h-6 bg-primary rounded-full border-4 border-white shadow-md z-10"></div>
         <div class="space-y-3">
           <div class="flex items-center gap-3">
-            <span class="bg-primary/10 text-primary px-3 py-1 rounded-lg text-xs font-black uppercase">${day.day}</span>
-            <h4 class="font-extrabold text-slate-900 text-lg">${day.title}</h4>
+            <span class="bg-primary/10 text-primary px-2 py-1 rounded-lg text-[10px] font-black uppercase whitespace-nowrap">${day.day}</span>
+            <h4 class="font-extrabold text-slate-900 text-lg leading-tight">${day.title}</h4>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
             ${day.places
